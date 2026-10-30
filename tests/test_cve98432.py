@@ -109,20 +109,18 @@ class AnalyzerTests(unittest.TestCase):
         diff = mod.prepare_patch(self.root)
         result = subprocess.run(
             ["git", "-C", str(self.root), "apply", "--check", "-"],
-            input=diff,
+            input=diff.encode("utf-8"),
             capture_output=True,
-            text=True,
             check=False,
         )
-        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.returncode, 0, result.stderr.decode("utf-8", errors="replace"))
         result = subprocess.run(
             ["git", "-C", str(self.root), "apply", "-"],
-            input=diff,
+            input=diff.encode("utf-8"),
             capture_output=True,
-            text=True,
             check=False,
         )
-        self.assertEqual(result.returncode, 0, result.stderr)
+        self.assertEqual(result.returncode, 0, result.stderr.decode("utf-8", errors="replace"))
         self.assertEqual(
             mod.inspect_source(self.root)[0]["status"],
             "upstream_fix_pattern_present",
