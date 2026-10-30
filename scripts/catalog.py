@@ -97,6 +97,13 @@ def validate_catalog(data: object, directory: Path) -> None:
                 if not isinstance(floor, str):
                     raise ValueError(f"{key}: Windows build floor must be a version string")
                 version_tuple(floor)
+        fixed_releases = item.get("fixed_releases")
+        if fixed_releases is not None and (
+                not isinstance(fixed_releases, dict) or not fixed_releases
+                or any(not isinstance(branch, str) or not branch.strip()
+                       or not isinstance(release, str) or not release.strip()
+                       for branch, release in fixed_releases.items())):
+            raise ValueError(f"{key}: invalid fixed_releases branch map")
         if item.get("local_patch") is not None:
             if not isinstance(item["local_patch"], str) or not item["local_patch"].strip():
                 raise ValueError(f"{key}: local patch path must be a nonempty string")
@@ -168,12 +175,13 @@ def assess(item: dict, system: str, version: str, variant: str = "") -> dict:
         if installed >= target:
             out["result"] = "meets_published_release_floor"
             out["reason"] = (
-                "Assuming this is the real Google Chrome Stable version, it meets the "
-                "published minimum for these CVEs. Restart and confirm the running browser."
+                "Assuming this is the actual vendor product/build (not the host OS version), "
+                "it meets the published minimum for these CVEs. Confirm edition, vendor "
+                "package, supported upgrade path and actively running version."
             )
         else:
             out["result"] = "below_published_release_floor"
-            out["reason"] = "This reported browser version predates the published fix."
+            out["reason"] = "This reported product version is below the published fixed build."
         return out
     if item["id"] == "windows-cve-2026-33096":
         try:
@@ -225,7 +233,7 @@ def run(argv: list[str] | None = None) -> int:
     check = sub.add_parser("check", help="compare a manually verified product version to a floor")
     check.add_argument("identifier", help="advisory id or CVE")
     check.add_argument("--platform", required=True,
-                       help="windows, linux, macos, ios, ipados, tvos, visionos, watchos")
+                       help="windows, linux, macos, ios, ipados, tvos, visionos, watchos, service")
     check.add_argument("--version", required=True,
                        help="real installed product version, not assumed OS-wide version")
     check.add_argument("--variant", choices=["client", "server"], default="",

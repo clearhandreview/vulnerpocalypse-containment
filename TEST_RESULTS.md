@@ -1,26 +1,29 @@
-# Current offline verification — October 29, 2026
+# Current offline verification — October 30, 2026
 
-**Result:** 69 local offline unit tests passed (0 failing). Python 3.13 on
-Linux; standard-library-only implementation. The catalog parser reports
-8 public advisory records / 19 named CVEs; containment parser reports
-5 limited, reversible/manual guidance profiles.
+**Local result:** 77 offline unit tests passed on the available Linux
+Python 3.13 runner, including the October 30 CVE and platform regression
+checks. Catalog: **16 advisories / 27 CVEs**. Containment guide: **10
+profiles**. This is software correctness and catalog validation; it does
+not test real-world exploit resistance or install patches.
 
 Executed:
 
 ```sh
-python -m py_compile scripts/catalog.py scripts/quickstart.py scripts/vendor_handoff.py scripts/mptcp_guard.py cve98432.py
-python scripts/catalog.py validate
-python scripts/quickstart.py validate
-python -m unittest discover -s tests -v
+python3 -m py_compile scripts/catalog.py scripts/quickstart.py scripts/vendor_handoff.py scripts/mptcp_guard.py cve98432.py
+python3 scripts/catalog.py validate
+python3 scripts/quickstart.py validate
+python3 -m unittest discover -s tests -v
+sha256sum -c SHA256SUMS
 ```
 
-All four commands returned exit code **0**.
+The check tools remain read-only, except the separate Linux MPTCP control,
+which still requires an explicit privileged operator invocation.
 
-**Not tested:** production/real kernel patch activation, device updates,
-actual Windows and macOS runner execution, Python 3.11/3.12/3.14/3.15 hosted runs, all OS versions, unknown CVEs,
-service availability after disabling MPTCP, real exploitable behavior.
-GitHub Actions is configured for Windows, macOS and Linux on Python 3.11–3.15, but has not yet executed on GitHub.
+**Not verified:** current GitHub-hosted Windows/macOS CI for this release,
+Python 3.11/3.12/3.14/3.15 hosted jobs, real vendor package updates,
+Veeam/SCOM upgrade behavior, ServiceNow hosted-tenant state, Delinea GPO
+enforcement and policy-polling latency, Nomad symlink resistance, and actual
+device/kernel security status.
 
-For the full 13-check QA / QC and SENTINEL defect pass, see
-`docs/QA_QC_SENTINEL.md`. Synthetic fixture tests and human
-attestations do not certify a patched live system.
+Run the GitHub Actions matrix on the uploaded commit before publishing
+a release. For prior QA criteria, see `docs/QA_QC_SENTINEL.md`.

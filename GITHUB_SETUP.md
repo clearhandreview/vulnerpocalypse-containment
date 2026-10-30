@@ -32,7 +32,7 @@ Create an empty GitHub repository through the GitHub UI, without adding a
 second README or license. Extract the ZIP and run:
 
 ```sh
-cd vulnerpocalypse-fix-ledger
+cd vulnerpocalypse-containment
 python scripts/catalog.py validate
 python scripts/quickstart.py validate
 python -m unittest discover -s tests -v
@@ -60,7 +60,7 @@ of third-party advisory feeds.
 ## Easiest path in GitHub (no terminal required to create the repo)
 
 1. Sign in at **github.com** → click **+** in the top right → **New repository**.
-2. Name it `vulnerpocalypse-fix-ledger`; choose **Public** only if you mean
+2. Name it `vulnerpocalypse-containment`; choose **Public** only if you mean
    to publish every file in the package. Leave README/license/template options
    unchecked, since the ZIP already contains them.
 3. Click **Create repository**. Do **not** paste personal passwords or tokens.

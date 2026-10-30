@@ -1,4 +1,4 @@
-# Supported systems and honest limits (2026-10-29)
+# Supported systems and honest limits (2026-10-30)
 
 This project does **not** certify that its controls are safe on every OS
 version. Control applicability depends on the affected product, device
@@ -23,3 +23,14 @@ to decide whether a published fix is actively installed.
 Never interpret the presence of the original Linux source patch in this
 repository as proof that the installed kernel includes it. A patch file
 and a patched, running kernel are different states.
+
+## Additional product-specific handoffs (October 30)
+
+Nomad on installed client platforms: Community 2.1.1 or the Enterprise
+branch-specific fix; avoid untrusted workload privileges until deployment.
+Chrome desktop: 156.0.8078.79 for CVE-2026-76024, not an Android/fork fix.
+Delinea: Windows Core Agent only, with vendor TCP 5593 restriction.
+ServiceNow: `--os service` for tenant-level remediation, not an OS fix.
+Veeam: Windows Management Pack only, with 9a upgrade prerequisite.
+
+See [October 30 vendor handoffs](2026-10-30-HOTFIX-COVERAGE.md).

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewed_as_of": "2026-10-29",
-  "scope": "Supported reversible temporary exposure reduction. NOT vulnerability patches; no universal coverage or production certification.",
+  "reviewed_as_of": "2026-10-30",
+  "scope": "Conditional operator-reviewed exposure reduction and vendor update handoffs. Only Linux MPTCP has an opt-in executable host control. No universal hotfix.",
   "profiles": [
     {
       "id": "linux-mptcp-disable-new-sockets",
@@ -99,7 +99,7 @@
         "Prefer pausing use of the affected browser until the vendor fix is installed."
       ],
       "steps": [
-        "On a computer, open Chrome \u2192 Settings \u2192 Privacy and security \u2192 Security \u2192 Manage JavaScript optimization & security.",
+        "On a computer, open Chrome → Settings → Privacy and security → Security → Manage JavaScript optimization & security.",
         "Select 'Don't allow sites to use JavaScript optimization' when available; the option may affect site performance or function.",
         "For higher-risk systems, stop using the affected Chrome build until Google's signed update is available."
       ],
@@ -108,7 +108,7 @@
         "Open a trusted page and check required actions; do not test an exploit."
       ],
       "undo": [
-        "Use Chrome \u2192 Settings \u2192 About Chrome to install Google's signed stable update; relaunch.",
+        "Use Chrome → Settings → About Chrome to install Google's signed stable update; relaunch.",
         "Recheck the active full Chrome version and run the catalog version checker for each listed CVE.",
         "Return settings to the site's approved baseline only after confirming the vendor update and acceptable risk."
       ],
@@ -134,7 +134,7 @@
         "Prefer not to use the affected Safari build for untrusted websites until Apple's signed update is installed."
       ],
       "steps": [
-        "On Mac, open Safari \u2192 Settings \u2192 Security.",
+        "On Mac, open Safari → Settings → Security.",
         "Clear 'Enable JavaScript' if the organization accepts site breakage.",
         "Avoid sensitive or unfamiliar browsing until the full vendor update is installed."
       ],
@@ -172,7 +172,7 @@
         "Check the device manufacturer's security bulletin for exact model and build."
       ],
       "check": [
-        "Open Settings \u2192 Security & privacy and Settings \u2192 System \u2192 Software updates (names vary by manufacturer).",
+        "Open Settings → Security & privacy and Settings → System → Software updates (names vary by manufacturer).",
         "Record the device model, Android security patch level and Google Play system update date.",
         "If no vendor document maps this specific chain to a fixed build, mark its status UNKNOWN."
       ],
@@ -184,6 +184,191 @@
       "limitations": "Physical precautions cannot retroactively protect a stolen device. No public CVE/fixed-build mapping is established for this chain here.",
       "references": [
         "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude"
+      ]
+    },
+    {
+      "id": "nomad-allocation-exposure-review",
+      "name": "Nomad: restrict untrusted workload operations until edition-specific upgrade",
+      "platforms": [
+        "linux",
+        "windows",
+        "macos"
+      ],
+      "cves": [
+        "CVE-2026-107347",
+        "CVE-2026-119168"
+      ],
+      "control": "operator-reviewed ACL and scheduler workload restrictions",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Nomad Community 2.1.0 or earlier, or an affected Enterprise branch; only where operators cannot deploy the vendor fix immediately.",
+      "before": [
+        "Identify every Nomad client and its edition/version; record whether clients run with elevated privileges.",
+        "Determine which identities can submit/dispatch/update jobs, and which jobs use exec/java drivers or sticky ephemeral disks.",
+        "Review business need and outage impact with cluster owner; capture current ACL policies and scheduler state."
+      ],
+      "steps": [
+        "As an operator, restrict job submit/dispatch/update permissions to trusted service identities using existing Nomad ACL administration. Do not overwrite broad ACL policies automatically.",
+        "Review untrusted tenant use of exec/java task drivers and sticky ephemeral disks; temporarily suspend affected workloads only with owner approval.",
+        "Use vendor-signed packages to upgrade Community clients to 2.1.1+; Enterprise fixed lines are 2.1.0+ent, 1.11.12+ent and 1.10.18+ent. Coordinate servers/clients using supported upgrade guidance."
+      ],
+      "check": [
+        "Confirm effective ACL restrictions and current running client version/edition on every affected node.",
+        "Perform authorized, non-exploit dispatch and same-client allocation replacement smoke tests; validate task files, ownership and workload health."
+      ],
+      "undo": [
+        "After vendor fix verification and independent change review, restore approved submit/dispatch/update ACL permissions as needed.",
+        "Resume paused trusted workloads and confirm scheduling, logs, and migration behavior are healthy."
+      ],
+      "limitations": "ACL restrictions and pausing workloads only reduce opportunity; they cannot prove avoidance of all symlink paths. Nomad Community 2.1.0 is not a fixed release. Upgrading Nomad requires coordinated vendor procedure and may not support downgrade.",
+      "references": [
+        "https://discuss.hashicorp.com/t/hcsec-2026-52-nomad-dispatch-payload-writes-can-escape-the-allocation-directory-through-symlinks/77930",
+        "https://discuss.hashicorp.com/t/hcsec-2026-53-nomad-allocation-data-migration-may-allow-host-directory-permission-modification-via-symlink-following/77931",
+        "https://discuss.hashicorp.com/t/nomad-v2-1-1-released/77928"
+      ]
+    },
+    {
+      "id": "chrome-mediastream-urgent-update",
+      "name": "Chrome MediaStream: update official Chrome Stable and limit untrusted browsing",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "cves": [
+        "CVE-2026-76024"
+      ],
+      "control": "urgent signed browser update / optional temporary browsing restriction",
+      "confidence": "user-exposure-reduction_not_cve_fix",
+      "when_to_use": "Official Chrome desktop Stable is below 156.0.8078.79 or an update is pending. Do not assume this version governs Android or forks.",
+      "before": [
+        "Record the current full running version from chrome://settings/help and the browser distribution channel.",
+        "Save work and plan a browser relaunch."
+      ],
+      "steps": [
+        "Use Chrome → Help → About Chrome to download Google’s signed Stable update, then relaunch.",
+        "If the update is unavailable, stop opening untrusted sites in the outdated browser; use an organization-approved updated browser if available."
+      ],
+      "check": [
+        "Verify Chrome Stable is running at least 156.0.8078.79 on Windows/macOS/Linux and confirm vendor release applies.",
+        "Open a trusted test page and verify typical browser operations."
+      ],
+      "undo": [
+        "Remove temporary browsing restrictions after running version, vendor applicability and normal function are confirmed.",
+        "Do not downgrade a patched Chrome browser to restore older behavior."
+      ],
+      "limitations": "No local MediaStream binary fix or universal workaround; other Chromium-based browsers require their own advisories.",
+      "references": [
+        "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_02107719452.html"
+      ]
+    },
+    {
+      "id": "delinea-windows-tcp-5593-inbound-restriction",
+      "name": "Delinea Windows Core Agent: restrict inbound TCP 5593 pending agent upgrade",
+      "platforms": [
+        "windows"
+      ],
+      "cves": [
+        "CVE-2026-92744"
+      ],
+      "control": "Windows host firewall / GPO restriction of inbound agent TCP 5593",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Affected Delinea Privilege Manager Windows Core Agents cannot be immediately updated. Obtain owner approval before changing remote policy-delivery behavior.",
+      "before": [
+        "Inventory Windows Core Agent build and whether management is cloud or on premises.",
+        "Review the effective Windows Defender Firewall/GPO policy and identify application owners, management server IP addresses and required agent policy/revocation delivery deadlines.",
+        "Confirm remote access and a rollback path; use a pilot endpoint first."
+      ],
+      "steps": [
+        "Cloud: configure centrally managed Windows inbound firewall policy to block TCP port 5593 for the affected agent, as described by Delinea.",
+        "On-premises: block inbound TCP 5593 or, if necessary, restrict source to the *verified* Privilege Manager web server IP; do not invent an IP, widen scope or use blanket firewall resets.",
+        "Validate and document changed agent pull/poll interval before rollout. Deploy the correct vendor-signed fixed Windows Core Agent build: 12.0.5804+ on the 12.x branch or 13.0.2064+ on the 13.x branch."
+      ],
+      "check": [
+        "Inspect effective inbound firewall rules on the Windows endpoint and verify TCP 5593 is not accessible from unapproved networks.",
+        "Check policy update and privileged-access revocation timing under the new pull/poll behavior.",
+        "Verify the running Core Agent version and service health after vendor update."
+      ],
+      "undo": [
+        "After confirmed vendor-fixed agent rollout, change review and policy-delivery validation, remove only the temporary named/managed firewall rule or revert that GPO change.",
+        "Recheck inbound exposure and that privilege policies still enforce correctly."
+      ],
+      "limitations": "A firewall configuration is not the fixed agent; inbound TCP 5593 restriction can change delivery to scheduled polling on premises and affect urgent revocations. Only documented for Delinea Windows Core Agent; not a macOS/Linux fix.",
+      "references": [
+        "https://delinea.com/security-advisories",
+        "https://docs.delinea.com/online-help/privilege-manager/release-notes/13.0.0.htm",
+        "https://docs.delinea.com/online-help/privilege-manager/install/agents/agent-ports.htm"
+      ]
+    },
+    {
+      "id": "servicenow-admin-surface-review",
+      "name": "ServiceNow AI Platform: confirm platform hotfix and restrict unneeded administrators",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-103093"
+      ],
+      "control": "hosted service change record / role-access review (not host OS configuration)",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "A ServiceNow AI Platform instance has not been confirmed on a vendor-remediated branch/build.",
+      "before": [
+        "Identify instance owner, hosted or self-hosted deployment, exact ServiceNow release, patch and hot fix build.",
+        "Record which identities need the admin role; assess effects of changes to workflow automations."
+      ],
+      "steps": [
+        "For hosted instances obtain the ServiceNow maintenance/deployment confirmation. For partners/self-hosted obtain the applicable signed build or hotfix through ServiceNow Support (KB3228994).",
+        "Apply least-privilege review: revoke unnecessary admin role assignments only after approved access review; do not automatically remove roles or disable required automations.",
+        "Use the branch-specific vendor advisory; do not translate release names into numeric OS version floors."
+      ],
+      "check": [
+        "Verify the active ServiceNow instance build and matching branch-specific vendor correction.",
+        "Test authorized administrative tasks, integrations and audit logs after role or release change."
+      ],
+      "undo": [
+        "Restore only approved legitimate role assignments if access review found an operational issue.",
+        "Do not roll back an active security hotfix without ServiceNow support and risk approval."
+      ],
+      "limitations": "This is a hosted/application issue, not an Ubuntu, Windows or macOS kernel hotfix. No stand-alone mitigation guarantees containment of a Rhino sandbox escape. Some branch fixes require authenticated vendor confirmation.",
+      "references": [
+        "https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB3228994"
+      ]
+    },
+    {
+      "id": "veeam-management-pack-isolation-and-upgrade",
+      "name": "Veeam Management Pack: isolate management services and upgrade via supported 9a build",
+      "platforms": [
+        "windows"
+      ],
+      "cves": [
+        "CVE-2023-22793",
+        "CVE-2026-107238",
+        "CVE-2026-107239"
+      ],
+      "control": "restrict service management-plane exposure and perform supported vendor upgrade",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Veeam Management Pack for Microsoft System Center is on version 9.x or otherwise not confirmed at fixed build 13.1.0.334.",
+      "before": [
+        "Identify affected Virtualization Extensions and Collector services, host and SCOM dependencies.",
+        "Back up configuration, capture service accounts, group memberships, approved management endpoints and upgrade documentation.",
+        "Confirm source Management Pack version 9a build 9.1.0.3107 before planning supported 13.1 upgrade; do not attempt an untested direct jump from older builds."
+      ],
+      "steps": [
+        "Have the Windows/SCOM administrator limit unneeded network reachability to Veeam Management Pack management components using environment-specific least-access policy. Do not use invented universal ports or firewall IP ranges.",
+        "Review membership of Veeam Virtualization Extensions Users and domain accounts able to reach Collector; remove unnecessary grants only after access review.",
+        "Follow Veeam KB4949 supported upgrade path from 9a build 9.1.0.3107 to 13.1.0.334 with verified vendor packages and maintenance approval."
+      ],
+      "check": [
+        "Confirm running Management Pack build 13.1.0.334 and service state for both Virtualization Extensions and Collector.",
+        "Validate SCOM collection, authorized remote management, scheduled jobs and audit logs."
+      ],
+      "undo": [
+        "Restore only the specific temporary management-plane restrictions after documented vendor fix validation and change approval.",
+        "For upgrade problems follow Veeam-supported restore/recovery procedures; do not blindly downgrade or reinstall."
+      ],
+      "limitations": "No universal Veeam binary hotfix or verified exploit-resistant firewall rule included. This advisory pertains to Veeam Management Pack, not Veeam Backup & Replication generally; source version and upgrade path matter.",
+      "references": [
+        "https://www.veeam.com/kb4961",
+        "https://www.veeam.com/kb4949"
       ]
     }
   ]

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "reviewed_as_of": "2026-10-29",
-  "scope": "Curated subset of publicly attributable Anthropic-reported CVEs; not the full undisclosed disclosure ledger",
+  "reviewed_as_of": "2026-10-30",
+  "scope": "Curated Anthropic-linked records and separately sourced October 29-30, 2026 vendor advisories; not exhaustive. Read-only assessments never install patches.",
   "official_research": "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude",
   "advisories": [
     {
@@ -212,6 +212,187 @@
       "patch_url": null,
       "verification": "Check About Safari/Apple OS version and official Apple security content for that specific release and device; apply Apple Software Update and restart.",
       "limitations": "Fixed release list is product-specific. A numeric comparison across macOS branches or older Safari-supported macOS versions is not automatically valid."
+    },
+    {
+      "id": "nomad-cve-2026-107347",
+      "product": "HashiCorp Nomad Community / Enterprise (allocation dispatch and executor logs)",
+      "platforms": [
+        "linux",
+        "windows",
+        "macos"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-107347"
+      ],
+      "attribution": "HashiCorp HCSEC-2026-52; October 30 CE 2.1.1 correction",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "fixed_releases": {
+        "Community": "2.1.1",
+        "Enterprise 2.1": "2.1.0+ent",
+        "Enterprise 1.11": "1.11.12+ent",
+        "Enterprise 1.10": "1.10.18+ent"
+      },
+      "official_advisory": "https://discuss.hashicorp.com/t/hcsec-2026-52-nomad-dispatch-payload-writes-can-escape-the-allocation-directory-through-symlinks/77930",
+      "patch_url": null,
+      "verification": "Identify Community vs Enterprise and exact branch on all Nomad clients; verify signed vendor release, upgraded running agents, and normal allocation dispatch; inspect all jobs that could plant symlinks.",
+      "limitations": "Nomad 2.1.0 Community is NOT fixed. Do not compare Enterprise branch versions numerically or treat a service running on any OS as automatically affected. No live exploit-resistance testing."
+    },
+    {
+      "id": "nomad-cve-2026-119168",
+      "product": "HashiCorp Nomad Community / Enterprise (sticky ephemeral disk migration)",
+      "platforms": [
+        "linux",
+        "windows",
+        "macos"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-119168"
+      ],
+      "attribution": "HashiCorp HCSEC-2026-53; October 30 CE 2.1.1 correction",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "fixed_releases": {
+        "Community": "2.1.1",
+        "Enterprise 2.1": "2.1.0+ent",
+        "Enterprise 1.11": "1.11.12+ent",
+        "Enterprise 1.10": "1.10.18+ent"
+      },
+      "official_advisory": "https://discuss.hashicorp.com/t/hcsec-2026-53-nomad-allocation-data-migration-may-allow-host-directory-permission-modification-via-symlink-following/77931",
+      "patch_url": null,
+      "verification": "Confirm affected Nomad clients updated in the correct edition/branch; run authorized replacement/migration tests with normal data and verify directory ownership remains expected.",
+      "limitations": "Requires same-client allocation replacement and sticky ephemeral disk. A version claim alone does not test symlink escape resistance. CE 2.1.0 is NOT fixed."
+    },
+    {
+      "id": "chrome-2026-10-29-mediastream",
+      "product": "Google Chrome Stable (official desktop builds)",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "date_published": "2026-10-30",
+      "cves": [
+        "CVE-2026-76024"
+      ],
+      "attribution": "Google Chrome Stable release; vendor critical severity (different from CISA ADP assessment)",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "156.0.8078.79",
+        "macos": "156.0.8078.79",
+        "linux": "156.0.8078.79"
+      },
+      "official_advisory": "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_02107719452.html",
+      "patch_url": null,
+      "verification": "Update official desktop Chrome Stable from Google; relaunch; verify active build 156.0.8078.79 or later, vendor channel, platform and installation.",
+      "limitations": "Do not infer any protection for Android, iOS, Chromium, Edge or another browser from this desktop release. Settings workarounds do not establish MediaStream exploit resistance."
+    },
+    {
+      "id": "delinea-cve-2026-92744",
+      "product": "Delinea Privilege Manager Windows Core Agent",
+      "platforms": [
+        "windows"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-92744"
+      ],
+      "attribution": "Delinea security advisory and Privilege Manager release notes",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "fixed_releases": {
+        "Windows agent 12.x": "12.0.5804",
+        "Windows agent 13.x": "13.0.2064"
+      },
+      "official_advisory": "https://delinea.com/security-advisories",
+      "patch_url": null,
+      "verification": "Inventory Core Agent version and product channel on each Windows endpoint; deploy vendor-provided branch-appropriate package and verify running agent build. Check effective inbound TCP 5593 policy and policy/revocation latency.",
+      "limitations": "Vendor describes affected Windows agent builds and branch-specific fixed versions; macOS and Linux agent fixes cannot be inferred. Blocking 5593 changes on-prem push delivery to scheduled pulls."
+    },
+    {
+      "id": "servicenow-cve-2026-103093",
+      "product": "ServiceNow AI Platform (hosted / partner / self-hosted service)",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-103093"
+      ],
+      "attribution": "ServiceNow CNA record and official customer advisory KB3228994",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "fixed_releases": {
+        "Yokohama": "Patch 13 Hot Fix 4a",
+        "Zurich": "Branch-specific; confirm KB3228994",
+        "Australia": "Patch 5; confirm KB3228994"
+      },
+      "official_advisory": "https://support.servicenow.com/kb?id=kb_article_view&sysparm_article=KB3228994",
+      "patch_url": null,
+      "verification": "Verify instance branch, hot fix and maintenance record in ServiceNow; hosted customers confirm vendor deployment; self-hosted customers apply vendor-signed supported updates and verify the active instance build.",
+      "limitations": "Service CVE, NOT an OS patch; Rhino sandbox risk cannot be fixed by host-only changes. Some branch mappings require authenticated vendor documentation, so automated status stays unknown."
+    },
+    {
+      "id": "veeam-cve-2023-22793",
+      "product": "Veeam Management Pack / Virtualization Extensions service",
+      "platforms": [
+        "windows"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2023-22793"
+      ],
+      "attribution": "Veeam KB4961 and KB4949 (disclosed Oct 2026; CVE identifier reserved in 2023)",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "13.1.0.334"
+      },
+      "official_advisory": "https://www.veeam.com/kb4961",
+      "patch_url": null,
+      "verification": "Check affected Veeam Management Pack component and active build 13.1.0.334. Before upgrading confirm supported source version 9a build 9.1.0.3107 per KB4949; run SCOM/Collector smoke tests.",
+      "limitations": "Only Veeam Management Pack for Microsoft System Center, not all Veeam products. Prior versions require supported upgrade sequencing; a version comparison is not an installer."
+    },
+    {
+      "id": "veeam-cve-2026-107238",
+      "product": "Veeam Management Pack / Collector service",
+      "platforms": [
+        "windows"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-107238"
+      ],
+      "attribution": "Veeam KB4961 and KB4949",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "13.1.0.334"
+      },
+      "official_advisory": "https://www.veeam.com/kb4961",
+      "patch_url": null,
+      "verification": "Verify active Veeam Management Pack Collector build 13.1.0.334 after approved upgrade from supported source (9a build 9.1.0.3107); validate Collector service and SCOM operations.",
+      "limitations": "Only Veeam Management Pack; does not certify other Veeam products. Upgrade from older 9.x may need staging to supported starting build."
+    },
+    {
+      "id": "veeam-cve-2026-107239",
+      "product": "Veeam Management Pack / Collector service",
+      "platforms": [
+        "windows"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-107239"
+      ],
+      "attribution": "Veeam KB4961 and KB4949",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "13.1.0.334"
+      },
+      "official_advisory": "https://www.veeam.com/kb4961",
+      "patch_url": null,
+      "verification": "Verify active Veeam Management Pack Collector build 13.1.0.334 after approved upgrade from supported source (9a build 9.1.0.3107); validate Collector service and SCOM operations.",
+      "limitations": "Only Veeam Management Pack; does not certify other Veeam products. Upgrade from older 9.x may need staging to supported starting build."
     }
   ],
   "unresolved": [

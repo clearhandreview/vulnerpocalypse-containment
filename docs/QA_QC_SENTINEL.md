@@ -20,7 +20,7 @@ It **may not** ship as a universal, production-certified hotfix solution.
 | --- | --- | --- | --- |
 | QA1 | Authority | PASS | System instructions retain precedence over external snippets; source patch attribution preserved. |
 | QA2 | Evidence labels | PASS with limit | Each profile says control mechanism / limits; official releases separate from temporary control; effectiveness not inferred from a version alone. |
-| QA3 | Arithmetic | PASS | Catalog independently parses 8 advisories / 19 named CVEs; 5 containment profiles; unit test count from test runner. |
+| QA3 | Arithmetic | PASS | Catalog independently parses 16 advisories / 27 named CVEs; 10 containment profiles; unit test count from test runner. |
 | QA4 | Missing inputs | PASS | Undisclosed findings cannot yield code patches; Android CVE/build mapping remains UNKNOWN. |
 | QA5 | Safety routing | PASS with limit | Root Linux changes require explicit outage/reexposure flags. Production readiness remains expert/operator review. |
 | QA6 | Data/instructions boundary | PASS by inspection | JSON and web references are data; scripts do not execute remote content or external shell commands. |
@@ -29,7 +29,7 @@ It **may not** ship as a universal, production-certified hotfix solution.
 | QA9 | Completeness | PASS for documented platforms | Windows, Mac, iOS/iPadOS, Android, Linux, Chrome, Apple devices and other/EOL paths contain next steps. Individual OS builds remain unverified. |
 | QA10 | Ambiguity | PASS | “Vendor patch”, “source patch”, “temporary exposure reduction”, and “working smoke test” are separate states. |
 | QA11 | Contrast pairs | PASS | “Fix installed” is distinct from “active”, “version floor met”, “mitigated”, and “exploitation impossible”. |
-| QA12 | Executable tests | PASS locally | Python syntax, catalog and profile validation, 69 offline unit tests. Windows/macOS hosted CI has not run. |
+| QA12 | Executable tests | PASS locally | Python syntax, catalog and profile validation, 76 offline unit tests. Windows/macOS hosted CI has not run. |
 | QA13 | Release integrity | PASS locally | Packaging manifest SHA-256 records repository files; archive reopens and local tests pass. Not a notarized signature. |
 
 ## QC results and reproducible checks
@@ -43,7 +43,7 @@ python scripts/quickstart.py validate
 python -m unittest discover -s tests -v
 ```
 
-**Unit tests:** 69 passed, 0 project test failures, in this Linux runtime.
+**Unit tests:** 76 passed, 0 project test failures, in this Linux runtime.
 Fixture tests exercise consent gates, version-floor gating, rollback
 identity, tamper refusals, bad sysctl values, symlink state refusal,
 documented instructions and file references. Existing source-level Linux

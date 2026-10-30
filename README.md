@@ -1,9 +1,9 @@
-# Vulnerpocalypse Fix Ledger — cross-platform security-update evidence toolkit
+# Vulnerpocalypse Containment — cross-platform security-update evidence toolkit
 
 [![Offline tests](https://img.shields.io/badge/tests-offline%20only-blue)](#verification-and-testing)
 
 **Maintained catalog, not a universal zero-day patcher.** This project tracks
-publicly disclosed security fixes linked to Anthropic/Claude security research.
+publicly disclosed security fixes linked to Anthropic/Claude research and separately sourced October 2026 vendor advisories.
 It contains an **attributed original Linux upstream patch** for
 CVE-2026-98432, **vendor update references** for proprietary or
 signed products, a cross-platform **read-only** version-floor checker,
@@ -87,27 +87,30 @@ A kernel/device "universal hotfix" cannot safely be synthesized from a CVE
 name or a hashed disclosure. Use a source-backed, reversible containment
 where available; otherwise isolate or stop using the affected service.
 
-The `data/containments.json` catalog contains **five conditional,
+The `data/containments.json` catalog contains **ten conditional,
 limited exposure-reduction guides**. These do not establish CVE remediation.
 A new automatic patch is accepted only after source code, reproducible
 vulnerability, supported versions, regression tests, rollback and review
 have been established. See [Contribution rules](CONTRIBUTING.md).
 
-## Current scope — reviewed October 29, 2026
+## Current scope — reviewed October 30, 2026
 
-The curated `data/advisories.json` contains **19 individually identified CVEs**
-across **8 advisory records**. The source for each record is linked inside the
-catalog. The Chrome list is limited to CVEs explicitly credited to Anthropic,
-Claude, or their research partners in the selected Google release notices —
-**not** the 62 Chrome CVEs Anthropic describes collectively, and **not** the
-thousands of entries on Anthropic's broader disclosure dashboard.
+The curated `data/advisories.json` contains **27 individually identified CVEs**
+across **16 advisory records**. The source for each record is linked inside the
+catalog. The original Chrome group contains CVEs attributed to Anthropic/Claude; the October 30 MediaStream CVE is a separate vendor disclosure. This is not an exhaustive CVE or disclosure ledger.
 
 | Component | Included identifiers | How the fix is obtained | How to validate |
 | --- | --- | --- | --- |
 | Linux IPv4 TCP | CVE-2026-98432 | Distribution-maintained kernel update, or attributed upstream source patch for maintainers | Compare vendor advisory and installed *running* kernel package; optional source checker |
 | Windows HTTP.sys | CVE-2026-33096 | Microsoft Update / WSUS / enterprise deployment | Installed Windows build **and** correct client/server edition; MSRC applicability |
 | Safari / Apple WebKit | CVE-2026-43715 | Apple Software Update / supported device updates | Actual Safari/OS release and matching Apple security bulletin |
-| Google Chrome Stable | 16 CVEs named in `data/advisories.json` | Google's signed browser stable update | Confirm **running** official Chrome Stable version is at least the cited release floor |
+| Google Chrome Stable | 17 CVEs named in `data/advisories.json` | Google's signed browser stable update | Confirm **running** official Chrome Stable version is at least the cited release floor |
+
+**October 30 update:** Eight additional product-specific CVEs and five new
+operator-reviewed profiles cover Nomad, Chrome MediaStream, Delinea Windows
+Core Agent, ServiceNow AI Platform and Veeam Management Pack. See the
+**[October 30 hotfix and containment handoffs](docs/2026-10-30-HOTFIX-COVERAGE.md)**.
+These entries do **not** install security patches automatically.
 
 **Additional unresolved:** Anthropic's Android/Pixel lock-screen-chain
 report does not disclose a verifiable CVE-to-fixed-build mapping. That case is
@@ -261,7 +264,7 @@ SECURITY.md                 Responsible disclosure/reporting boundaries
 python -m unittest discover -s tests -v
 ```
 
-CI is configured to test the scripts on Windows, macOS, and Linux (hosted runs not yet executed). Synthetic Linux C fixtures
+CI is configured to test the scripts on Windows, macOS, and Linux; verify the GitHub Actions jobs on your published commit. Synthetic Linux C fixtures
 only: **no real kernel compilation, no live exploit tests, no cross-platform
 security certification**. See `TEST_RESULTS.md` for the last local run.
 

@@ -10,7 +10,7 @@ import sys
 from urllib.parse import urlparse
 
 CATALOG = Path(__file__).resolve().parents[1] / "data" / "containments.json"
-ALLOWED_PLATFORMS = {"linux", "windows", "macos", "android", "ios", "ipados", "watchos", "tvos", "visionos"}
+ALLOWED_PLATFORMS = {"linux", "windows", "macos", "android", "ios", "ipados", "watchos", "tvos", "visionos", "service"}
 CVE_RE = re.compile(r"^CVE-\d{4}-\d{4,}$")
 ALLOWED_CONFIDENCE = {
     "documented_kernel_control_not_an_exploit_resistance_test",
@@ -18,6 +18,7 @@ ALLOWED_CONFIDENCE = {
     "user-exposure-reduction_not_cve_fix",
     "functional_exposure_reduction_not_full_webkit_fix",
     "practical_exposure_reduction_not_fixed_device_attestation",
+    "vendor_guidance_conditional_not_cve_fix",
 }
 
 
