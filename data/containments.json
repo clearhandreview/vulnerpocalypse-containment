@@ -1,0 +1,190 @@
+{
+  "schema_version": 1,
+  "reviewed_as_of": "2026-10-29",
+  "scope": "Supported reversible temporary exposure reduction. NOT vulnerability patches; no universal coverage or production certification.",
+  "profiles": [
+    {
+      "id": "linux-mptcp-disable-new-sockets",
+      "name": "Linux: temporarily stop creation of new MPTCP sockets",
+      "platforms": [
+        "linux"
+      ],
+      "cves": [
+        "CVE-2026-98432"
+      ],
+      "control": "kernel feature switch (per network namespace)",
+      "confidence": "documented_kernel_control_not_an_exploit_resistance_test",
+      "when_to_use": "Only if a Linux system may be affected, the relevant vendor kernel fix is not active, and MPTCP disruption is acceptable.",
+      "before": [
+        "Back up configuration and arrange service maintenance.",
+        "Identify all relevant network namespaces and MPTCP-using services.",
+        "Plan to restart affected MPTCP listeners; existing sockets may remain."
+      ],
+      "steps": [
+        "Read the status without changing anything: python3 scripts/mptcp_guard.py status",
+        "If it reports available and enabled, inspect running services and approve the outage.",
+        "On the Linux host, run: sudo python3 scripts/mptcp_guard.py apply --accept-service-disruption",
+        "If services use separate network namespaces, have the administrator assess them individually. This helper manages only its current namespace.",
+        "Restart affected listeners during maintenance; inspect normal service traffic."
+      ],
+      "check": [
+        "Run: python3 scripts/mptcp_guard.py status; expect knob value 0 in that namespace.",
+        "Confirm affected services remain functional without MPTCP; test ordinary IPv4 TCP connections.",
+        "Record date, namespace, running kernel and service status. Do NOT call the CVE fixed."
+      ],
+      "undo": [
+        "After installing and rebooting into a vendor-fixed kernel, verify the exact running kernel vendor advisory.",
+        "If the original boot still has the guard state: sudo python3 scripts/mptcp_guard.py rollback --accept-reexposure",
+        "If reboot cleared the runtime guard, inspect current MPTCP setting and restore normal service configuration per vendor guidance.",
+        "Verify MPTCP-required applications, plus ordinary connections; close temporary exception ticket."
+      ],
+      "limitations": "Only restricts creation of new MPTCP sockets in the current network namespace. Existing sockets, other namespaces and non-MPTCP attack paths remain outside its proof. Changes are runtime-only and lost on reboot. Applying and rolling back can interrupt services.",
+      "references": [
+        "https://docs.kernel.org/networking/mptcp-sysctl.html",
+        "https://docs.kernel.org/networking/mptcp.html",
+        "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude"
+      ]
+    },
+    {
+      "id": "windows-http3-http-sys-isolation",
+      "name": "Windows: reduce exposure of an HTTP.sys HTTP/3 endpoint",
+      "platforms": [
+        "windows"
+      ],
+      "cves": [
+        "CVE-2026-33096"
+      ],
+      "control": "operator-reviewed protocol exposure reduction",
+      "confidence": "documented_http3_configuration_not_a_verified_cve_fix",
+      "when_to_use": "Only for a vulnerable Windows HTTP.sys server exposing HTTP/3 that cannot yet take Microsoft's update. Requires server administrator.",
+      "before": [
+        "Confirm HTTP.sys hosts HTTP/3; do not confuse browser HTTP/3 with the Windows HTTP.sys server.",
+        "Back up current HTTP.sys application and registry configuration. Arrange a maintenance window."
+      ],
+      "steps": [
+        "Ask the server administrator to disable HTTP.sys HTTP/3 using their approved Microsoft-documented configuration, or restrict UDP/443 at the perimeter to trusted networks.",
+        "Do not assume a local Windows Firewall block works for every HTTP.sys QUIC listener.",
+        "Restart the affected service under the change plan; do not automatically restart the shared HTTP service."
+      ],
+      "check": [
+        "From an authorized test client, confirm the service does not accept HTTP/3 on the restricted endpoint.",
+        "Confirm the normal HTTPS/TCP application path continues working and inspect service logs.",
+        "Record the effective network policy and HTTP.sys configuration; no CVE-fixed claim."
+      ],
+      "undo": [
+        "Install Microsoft's signed update for the exact Windows edition and build, restart, verify active build and normal service function.",
+        "Restore the previous HTTP/3 policy/configuration in the approved maintenance window.",
+        "Test HTTP/3 and HTTPS/TCP with authorized clients."
+      ],
+      "limitations": "Network rules can have exceptions or interception differences. Microsoft HTTP.sys is distinct from other QUIC stacks. This is administrator-assisted containment only.",
+      "references": [
+        "https://learn.microsoft.com/aspnet/core/fundamentals/servers/httpsys",
+        "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-33096"
+      ]
+    },
+    {
+      "id": "chrome-temporary-restricted-use",
+      "name": "Chrome: limit exposure until the official browser update is active",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "cves": [],
+      "control": "browser settings and optional isolation",
+      "confidence": "user-exposure-reduction_not_cve_fix",
+      "when_to_use": "Google Chrome Stable cannot be updated promptly; do not assume the settings defeat the multi-bug exploit chain.",
+      "before": [
+        "Do not open unknown sites or attachments in a known-affected browser.",
+        "Prefer pausing use of the affected browser until the vendor fix is installed."
+      ],
+      "steps": [
+        "On a computer, open Chrome \u2192 Settings \u2192 Privacy and security \u2192 Security \u2192 Manage JavaScript optimization & security.",
+        "Select 'Don't allow sites to use JavaScript optimization' when available; the option may affect site performance or function.",
+        "For higher-risk systems, stop using the affected Chrome build until Google's signed update is available."
+      ],
+      "check": [
+        "Reopen the settings page to confirm the setting is still selected.",
+        "Open a trusted page and check required actions; do not test an exploit."
+      ],
+      "undo": [
+        "Use Chrome \u2192 Settings \u2192 About Chrome to install Google's signed stable update; relaunch.",
+        "Recheck the active full Chrome version and run the catalog version checker for each listed CVE.",
+        "Return settings to the site's approved baseline only after confirming the vendor update and acceptable risk."
+      ],
+      "limitations": "V8 optimizer control is not established as a workaround for all Chrome chains or every CVE. It may not protect other vulnerabilities.",
+      "references": [
+        "https://support.google.com/chrome/answer/10468685",
+        "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_0562499947.html"
+      ]
+    },
+    {
+      "id": "macos-safari-restricted-use",
+      "name": "macOS Safari: restrict active web content pending Apple's fix",
+      "platforms": [
+        "macos"
+      ],
+      "cves": [
+        "CVE-2026-43715"
+      ],
+      "control": "JavaScript permission and reduced untrusted browsing",
+      "confidence": "functional_exposure_reduction_not_full_webkit_fix",
+      "when_to_use": "A supported device cannot immediately install the Apple security update; not a universal Safari exploit block.",
+      "before": [
+        "Prefer not to use the affected Safari build for untrusted websites until Apple's signed update is installed."
+      ],
+      "steps": [
+        "On Mac, open Safari \u2192 Settings \u2192 Security.",
+        "Clear 'Enable JavaScript' if the organization accepts site breakage.",
+        "Avoid sensitive or unfamiliar browsing until the full vendor update is installed."
+      ],
+      "check": [
+        "Reopen Safari Security settings and check JavaScript is still disabled.",
+        "Test a trusted page for acceptable basic function; many sites may fail."
+      ],
+      "undo": [
+        "Install the relevant Apple OS/Safari security update using Software Update, then restart as instructed.",
+        "Confirm Safari/OS version against the exact Apple security advisory.",
+        "Re-enable JavaScript only under the approved local security policy and test sites."
+      ],
+      "limitations": "Disabling JavaScript does not prove the WebKit exploit chain impossible; WebKit remains in use by other applications.",
+      "references": [
+        "https://support.apple.com/en-lamr/guide/safari/ibrw1074/mac",
+        "https://support.apple.com/en-us/127594"
+      ]
+    },
+    {
+      "id": "android-usb-exposure-reduction",
+      "name": "Android: avoid untrusted USB connection while waiting for verified device fix",
+      "platforms": [
+        "android"
+      ],
+      "cves": [],
+      "control": "physical USB exposure reduction",
+      "confidence": "practical_exposure_reduction_not_fixed_device_attestation",
+      "when_to_use": "Until an affected-device / fixed-build mapping is published for the lock-screen bypass.",
+      "before": [
+        "Keep the device physically secured; a stolen device should be treated as exposed until its status is known."
+      ],
+      "steps": [
+        "Do not connect a locked phone to an untrusted USB host, charging station or unknown accessory.",
+        "Use a personally controlled charger; keep operating system and Google Play system updates current.",
+        "Check the device manufacturer's security bulletin for exact model and build."
+      ],
+      "check": [
+        "Open Settings \u2192 Security & privacy and Settings \u2192 System \u2192 Software updates (names vary by manufacturer).",
+        "Record the device model, Android security patch level and Google Play system update date.",
+        "If no vendor document maps this specific chain to a fixed build, mark its status UNKNOWN."
+      ],
+      "undo": [
+        "Install the official device and Google updates when published for this exact model.",
+        "Verify the active software and security patch levels against the published advisory before closing the issue.",
+        "Keep device protection and physical security in place."
+      ],
+      "limitations": "Physical precautions cannot retroactively protect a stolen device. No public CVE/fixed-build mapping is established for this chain here.",
+      "references": [
+        "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude"
+      ]
+    }
+  ]
+}

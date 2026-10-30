@@ -1,0 +1,237 @@
+{
+  "schema_version": 1,
+  "reviewed_as_of": "2026-10-29",
+  "scope": "Curated subset of publicly attributable Anthropic-reported CVEs; not the full undisclosed disclosure ledger",
+  "official_research": "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude",
+  "advisories": [
+    {
+      "id": "chrome-2026-10-01",
+      "product": "Google Chrome Stable (official Google builds)",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "date_published": "2026-10-01",
+      "cves": [
+        "CVE-2026-103631"
+      ],
+      "attribution": "Explicit Anthropic/Claude credit in Google release notes",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "154.0.8037.97",
+        "macos": "154.0.8037.97",
+        "linux": "154.0.8037.97"
+      },
+      "official_advisory": "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop.html",
+      "patch_url": null,
+      "verification": "Compare actual Google Chrome Stable app version to the published fixed version; restart Chrome. Google Chrome only, not unverified Chromium/Edge forks.",
+      "limitations": "Release floor is evidence for the listed CVEs, not a claim about every newer security flaw or about forked browsers."
+    },
+    {
+      "id": "chrome-2026-10-13",
+      "product": "Google Chrome Stable (official Google builds)",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "date_published": "2026-10-13",
+      "cves": [
+        "CVE-2026-110169"
+      ],
+      "attribution": "Explicit Anthropic/Claude credit in Google release notes",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "155.0.8059.79",
+        "macos": "155.0.8059.79",
+        "linux": "155.0.8059.79"
+      },
+      "official_advisory": "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_01668083673.html",
+      "patch_url": null,
+      "verification": "Compare actual Google Chrome Stable app version to the published fixed version; restart Chrome. Google Chrome only, not unverified Chromium/Edge forks.",
+      "limitations": "Release floor is evidence for the listed CVEs, not a claim about every newer security flaw or about forked browsers."
+    },
+    {
+      "id": "chrome-2026-10-15",
+      "product": "Google Chrome Stable (official Google builds)",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "date_published": "2026-10-15",
+      "cves": [
+        "CVE-2026-110913"
+      ],
+      "attribution": "Explicit Anthropic/Claude credit in Google release notes",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "155.0.8059.84",
+        "macos": "155.0.8059.84",
+        "linux": "155.0.8059.84"
+      },
+      "official_advisory": "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_01886704284.html",
+      "patch_url": null,
+      "verification": "Compare actual Google Chrome Stable app version to the published fixed version; restart Chrome. Google Chrome only, not unverified Chromium/Edge forks.",
+      "limitations": "Release floor is evidence for the listed CVEs, not a claim about every newer security flaw or about forked browsers."
+    },
+    {
+      "id": "chrome-2026-10-20",
+      "product": "Google Chrome Stable (official Google builds)",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "date_published": "2026-10-20",
+      "cves": [
+        "CVE-2026-113271",
+        "CVE-2026-113020",
+        "CVE-2026-113318",
+        "CVE-2026-113093",
+        "CVE-2026-113212"
+      ],
+      "attribution": "Explicit Anthropic/Claude credit in Google release notes",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "156.0.8078.47",
+        "macos": "156.0.8078.47",
+        "linux": "156.0.8078.47"
+      },
+      "official_advisory": "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_02018666648.html",
+      "patch_url": null,
+      "verification": "Compare actual Google Chrome Stable app version to the published fixed version; restart Chrome. Google Chrome only, not unverified Chromium/Edge forks.",
+      "limitations": "Release floor is evidence for the listed CVEs, not a claim about every newer security flaw or about forked browsers."
+    },
+    {
+      "id": "chrome-2026-10-27",
+      "product": "Google Chrome Stable (official Google builds)",
+      "platforms": [
+        "windows",
+        "macos",
+        "linux"
+      ],
+      "date_published": "2026-10-27",
+      "cves": [
+        "CVE-2026-118306",
+        "CVE-2026-118331",
+        "CVE-2026-118339",
+        "CVE-2026-118333",
+        "CVE-2026-118358",
+        "CVE-2026-118353",
+        "CVE-2026-118349",
+        "CVE-2026-118327"
+      ],
+      "attribution": "Explicit Anthropic/Claude credit in Google release notes",
+      "fix_type": "vendor_release",
+      "minimum_versions": {
+        "windows": "156.0.8078.73",
+        "macos": "156.0.8078.73",
+        "linux": "156.0.8078.73"
+      },
+      "official_advisory": "https://chromereleases.googleblog.com/2026/10/stable-channel-update-for-desktop_0562499947.html",
+      "patch_url": null,
+      "verification": "Compare actual Google Chrome Stable app version to the published fixed version; restart Chrome. Google Chrome only, not unverified Chromium/Edge forks.",
+      "limitations": "Release floor is evidence for the listed CVEs, not a claim about every newer security flaw or about forked browsers."
+    },
+    {
+      "id": "linux-cve-2026-98432",
+      "product": "Upstream Linux kernel",
+      "platforms": [
+        "linux"
+      ],
+      "date_published": "2026-10-27",
+      "cves": [
+        "CVE-2026-98432"
+      ],
+      "attribution": "Named by Anthropic in its October 27 report",
+      "fix_type": "upstream_patch",
+      "minimum_versions": {},
+      "official_advisory": "https://kernel.googlesource.com/pub/scm/linux/security/vulns/+/refs/heads/master/cve/published/2026/CVE-2026-98432.mbox",
+      "patch_url": "https://github.com/torvalds/linux/commit/e3f33b0a1d89d738e2b913dab519226eaf76e15b.patch",
+      "local_patch": "patches/linux-7.3-e3f33b0.patch",
+      "verification": "Use cve98432.py inspect-source on exact built source AND check vendor advisory, installed binary package, reboot and uname -r. Source inspection alone never proves runtime repair.",
+      "limitations": "Vendor backports and alternate kernel lifecycles vary; no automatic kernel version inference."
+    },
+    {
+      "id": "windows-cve-2026-33096",
+      "product": "Microsoft Windows HTTP.sys",
+      "platforms": [
+        "windows"
+      ],
+      "date_published": "2026-04-14",
+      "cves": [
+        "CVE-2026-33096"
+      ],
+      "attribution": "Named by Anthropic in its October 27 report",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "fixed_windows_builds": {
+        "22631": "10.0.22631.6936",
+        "26100-client": "10.0.26100.8246",
+        "26100-server": "10.0.26100.32690",
+        "26200": "10.0.26200.8246",
+        "28000": "10.0.28000.1836",
+        "20348": "10.0.20348.5020",
+        "25398": "10.0.25398.2274"
+      },
+      "official_advisory": "https://msrc.microsoft.com/update-guide/vulnerability/CVE-2026-33096",
+      "patch_url": null,
+      "verification": "Install latest applicable cumulative Windows update, restart, check actual OS build and UBR, and confirm product applicability in MSRC. The same major build 26100 exists on client and server with different fixed UBRs.",
+      "limitations": "Unlisted builds/editions are not evaluated. The build evidence is for the MSRC affected editions, not a general Windows safety certificate."
+    },
+    {
+      "id": "apple-cve-2026-43715",
+      "product": "Apple WebKit / Safari",
+      "platforms": [
+        "macos",
+        "ios",
+        "ipados",
+        "tvos",
+        "watchos",
+        "visionos"
+      ],
+      "date_published": "2026-06-29",
+      "cves": [
+        "CVE-2026-43715"
+      ],
+      "attribution": "Apple credits Milad Nasr and Nicholas Carlini with Claude, Anthropic",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "fixed_apple_releases": {
+        "Safari": "26.5.2",
+        "iOS": "26.5.2",
+        "iPadOS": "26.5.2",
+        "macOS Tahoe": "26.5.2",
+        "tvOS": "26.6",
+        "watchOS": "26.6",
+        "visionOS": "26.6"
+      },
+      "official_advisory": "https://support.apple.com/en-us/127594",
+      "patch_url": null,
+      "verification": "Check About Safari/Apple OS version and official Apple security content for that specific release and device; apply Apple Software Update and restart.",
+      "limitations": "Fixed release list is product-specific. A numeric comparison across macOS branches or older Safari-supported macOS versions is not automatically valid."
+    }
+  ],
+  "unresolved": [
+    {
+      "id": "android-lockscreen-chain",
+      "product": "Android / Pixel USB device transfer",
+      "cves": [],
+      "status": "fix_reported_by_researcher_not_independently_mapped",
+      "source": "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude",
+      "reason": "Anthropic reports Google addressed it, but does not name CVEs or the required Android/Play services/firmware release. Do not misattribute unrelated Android bulletin CVEs.",
+      "next_step": "Obtain an official Google advisory mapping the chain to component, identifier, and fixed build."
+    },
+    {
+      "id": "remaining-claude-findings",
+      "product": "Multiple open-source projects",
+      "cves": [],
+      "status": "not_exhaustively_identified",
+      "source": "https://red.anthropic.com/2026/cvd/",
+      "reason": "Thousands of findings are not yet publicly identified or fixed. Hash-only entries cannot be converted into patches.",
+      "next_step": "Add individual findings only after maintainer disclosure and a verifiable fix are published."
+    }
+  ]
+}

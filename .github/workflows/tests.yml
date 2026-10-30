@@ -1,0 +1,27 @@
+name: Offline catalog, temporary-control and handoff tests
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        python-version: ["3.11", "3.12", "3.13", "3.14", "3.15"]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: actions/setup-python@v7
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Syntax check
+        run: python -m py_compile scripts/catalog.py scripts/quickstart.py scripts/vendor_handoff.py scripts/mptcp_guard.py cve98432.py
+      - name: Validate catalog
+        run: python scripts/catalog.py validate
+      - name: Validate containment profiles
+        run: python scripts/quickstart.py validate
+      - name: Offline unit tests
+        run: python -m unittest discover -s tests -v
