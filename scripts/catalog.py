@@ -14,6 +14,18 @@ import re
 import sys
 from urllib.parse import urlparse
 
+def collect_inventory() -> dict:
+    # Tests also load this module by path without adding scripts/ to sys.path.
+    import importlib.util
+    source = Path(__file__).with_name("platform_inventory.py")
+    spec = importlib.util.spec_from_file_location("platform_inventory", source)
+    if spec is None or spec.loader is None:
+        raise OSError(f"Cannot import platform inventory from {source}")
+    inventory_module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(inventory_module)
+    return inventory_module.collect_inventory()
+
+
 ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CATALOG = ROOT / "data" / "advisories.json"
 CVE_RE = re.compile(r"^CVE-\d{4}-\d{4,}$")
@@ -253,12 +265,7 @@ def run(argv: list[str] | None = None) -> int:
             print(json.dumps(data["unresolved"], indent=2))
             return 0
         if args.command == "inventory":
-            print(json.dumps({
-                "system": platform.system(), "release": platform.release(),
-                "version": platform.version(), "machine": platform.machine(),
-                "fix_status": "unknown",
-                "note": "Host identification never establishes a CVE patch state."
-            }, indent=2))
+            print(json.dumps(collect_inventory(), indent=2))
             return 0
         if args.command == "check":
             item = find_advisory(data, args.identifier)

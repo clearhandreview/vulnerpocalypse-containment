@@ -34,3 +34,23 @@ ServiceNow: `--os service` for tenant-level remediation, not an OS fix.
 Veeam: Windows Management Pack only, with 9a upgrade prerequisite.
 
 See [October 30 vendor handoffs](2026-10-30-HOTFIX-COVERAGE.md).
+
+
+## Expanded read-only discovery
+
+`python3 scripts/platform_inventory.py --json` reports Linux distribution
+identity and typical package-management **routes**, executable presence
+for common language toolchains, architecture, and limited Linux firmware
+context. It does **not** certify patch status, automatically update
+packages, scan every software dependency, or detect all hardware.
+
+Known distro IDs include Debian/Ubuntu derivatives, Fedora/RHEL,
+openSUSE/SLES, Arch derivatives, Alpine, Void, Gentoo and NixOS.
+Fedora Atomic desktops use a distinct `rpm-ostree` route. Vendor-image
+systems and unknown derivatives receive no privileged upgrade command.
+WSL, containers, Android, macOS and Windows are treated differently
+from native physical Linux hosts. This is discovery, not testing
+each distribution on a native machine.
+
+For the actual coverage and limits, use
+[Linux distributions, languages, hardware](LINUX_DISTRIBUTIONS_AND_RUNTIME_COVERAGE.md).

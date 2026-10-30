@@ -93,6 +93,26 @@ A new automatic patch is accepted only after source code, reproducible
 vulnerability, supported versions, regression tests, rollback and review
 have been established. See [Contribution rules](CONTRIBUTING.md).
 
+## Distribution, language, and device discovery
+
+The optional **read-only platform inventory** identifies distribution families
+(including Debian/Ubuntu, Fedora/RHEL, SUSE, Arch, Alpine, Void, Gentoo,
+NixOS and Fedora Atomic), architecture, limited firmware context, and the
+presence of common programming-language toolchains. It does not execute
+toolchains or package managers, install patches, or certify firmware.
+
+```bash
+python3 scripts/platform_inventory.py --json
+python3 scripts/catalog.py inventory
+```
+
+When a distribution is unknown or reports only a parent through `ID_LIKE`,
+the tool declines to recommend a parent distribution's update command.
+Android, WSL, containers, Linux servers, embedded hardware and cloud-hosted
+services have different vendor update authorities. Read the
+[Linux, language and hardware coverage guide](docs/LINUX_DISTRIBUTIONS_AND_RUNTIME_COVERAGE.md)
+for exact capabilities, unsupported targets and safe vendor handoffs.
+
 ## Current scope — reviewed October 30, 2026
 
 The curated `data/advisories.json` contains **27 individually identified CVEs**

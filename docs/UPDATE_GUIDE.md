@@ -59,6 +59,84 @@ For kernel changes, reboot when required and validate the **running**
 kernel, not only the installed package. For CVE-2026-98432 see
 `docs/LINUX_CVE-2026-98432.md`.
 
+## Additional Linux distribution families
+
+Use `python3 scripts/platform_inventory.py --json` to identify the
+distribution and its *usual* update route. Review the precise vendor
+advisory before running any privileged command; these examples do **not**
+prove a specific CVE is fixed.
+
+**Alpine** (supported release and normal installed system):
+
+```sh
+sudo apk update
+sudo apk upgrade
+```
+
+For diskless / data-mode Alpine, package updates may **not** update the
+booted kernel or firmware. Follow Alpine's boot-medium process.
+Source: https://wiki.alpinelinux.org/wiki/Apk
+
+**Arch** (supported rolling distribution; full-system updates, not
+partial `pacman -Sy` upgrades):
+
+```sh
+sudo pacman -Syu
+```
+
+Manjaro and other derivatives have their own release policies.
+
+**Void** (XBPS; review the transaction, and if XBPS itself upgrades,
+follow the handbook's second transaction procedure):
+
+```sh
+sudo xbps-install -Su
+```
+
+Source: https://docs.voidlinux.org/xbps/
+
+**Gentoo** (source builds, USE flags, masks, profile changes and
+rebuilds require admin review):
+
+```sh
+sudo emerge --sync
+sudo emerge --ask --verbose --update --deep --newuse @world
+```
+
+See the Gentoo handbook for follow-up rebuilds and cleanup.
+
+**NixOS** uses a declarative generation; use your project's flake
+or channel procedure. For channel-based systems only:
+
+```sh
+sudo nixos-rebuild switch --upgrade
+```
+
+Flake-based installations need their lockfile workflow instead.
+Source: https://nixos.org/manual/nixos/stable/
+
+**Fedora Silverblue / Kinoite** and other Atomic desktops use
+`rpm-ostree` deployments, not a normal workstation DNF upgrade:
+
+```sh
+rpm-ostree upgrade --check
+sudo rpm-ostree upgrade
+```
+
+Plan the reboot and verify the booted deployment.
+Source: https://docs.fedoraproject.org/en-US/fedora-silverblue/
+
+**Flatcar, Bottlerocket, SteamOS, ChromeOS, OEM appliance images,
+and unknown derivatives:** use their vendor's managed image or appliance
+update mechanism. Do not run a parent-distribution update by guessing
+from `ID_LIKE`.
+
+For WSL and containers, confirm which host owns the kernel and firmware
+before claiming a kernel CVE is fixed. Firmware, language dependency
+packages, browser extensions, container images and cloud services need
+separate vendor/supply-chain evidence. See
+[the read-only coverage guide](LINUX_DISTRIBUTIONS_AND_RUNTIME_COVERAGE.md).
+
 ## Windows clients and servers
 
 Use Settings → Windows Update → Check for updates → Download & install,

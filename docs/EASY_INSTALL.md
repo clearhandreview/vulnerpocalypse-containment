@@ -84,6 +84,15 @@ Never flash a community-supplied or unsigned phone image to "fix" this report.
 
 ## Linux: Ubuntu / Debian / Fedora / RHEL / SUSE and other distributions
 
+**Additional supported identification:** Arch, Alpine, Void, Gentoo, NixOS,
+Fedora Atomic and selected derivatives. Use
+`python3 scripts/platform_inventory.py --json` for a read-only host,
+language-toolchain and firmware-context inventory. See
+[the distribution and device scope](LINUX_DISTRIBUTIONS_AND_RUNTIME_COVERAGE.md).
+No discovered software is patched by inventory, and unknown distributions
+do not inherit a parent distro's upgrade commands.
+
+
 **Install the real fix:**
 1. Open a terminal and run `cat /etc/os-release` to identify your distribution.
 2. Use **your distribution's supported package manager** to install its
