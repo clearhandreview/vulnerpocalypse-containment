@@ -1512,6 +1512,473 @@
         "https://www.qt.io/blog/security-advisory-cve-2026-103653",
         "https://wiki.qt.io/List_of_known_vulnerabilities_in_Qt_products#CVE-2026-103653:"
       ]
+    },
+    {
+      "id": "cisco-silent-shield-observation-and-tac-handoff",
+      "name": "Cisco Catalyst SD-WAN: SILENT SHIELD observation, access review and TAC handoff",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-20127"
+      ],
+      "control": "offline independent identity and behavioral review; operator-approved access restrictions",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "For operators of potentially affected Cisco Catalyst SD-WAN Controller, Manager or Validator environments. Offline alerts are leads, not proof of compromise.",
+      "before": [
+        "Record independent approved System IPs, source addresses, controller/manager/validator roles and authorized maintenance changes. Protect the policy file from compromised devices.",
+        "Preserve off-device logs and coordinate with incident response, network operations and Cisco TAC. Plan service continuity and diagnostic collection before any upgrade or ACL change.",
+        "Collect Admin-Tech from all control components for TAC; collect vSmart Admin-Tech bundles sequentially, never simultaneously."
+      ],
+      "steps": [
+        "Run offline sample: python3 scripts/silent_shield.py --policy data/silent_shield_policy.example.json --events data/silent_shield_events.example.json",
+        "Normalize independently retained peering, SSH authentication, change control and integrity evidence into the documented JSON input format; do not run unreviewed commands from log content.",
+        "Investigate unexpected peers, vmanage-admin/root logins, unauthorized downgrade, runit startup changes and KeyDrift artifacts. Do not treat an alert or missing telemetry as confirmed infection.",
+        "For self-managed deployments, consider Cisco's port 22/830 allow-list guidance only after identifying all authorized controllers, operators and dependencies; route changes through independent approval.",
+        "If suspicious evidence is found, open a Cisco TAC case before deciding on software, controller reconstitution or key recovery. Never apply an automatic SD-WAN-wide isolation."
+      ],
+      "check": [
+        "Confirm approved peers and necessary management connections remain reachable via independently observed service-health data.",
+        "Check tunnel, routing, failover and application availability; validate approved ACL scope before considering any live change.",
+        "Confirm exact Cisco firmware/software release per control component and TAC assessment; monitor off-device after recovery."
+      ],
+      "undo": [
+        "Any restrictive ACL or firewall change must have a separately approved owner, reversible configuration backup and tested rollback before execution.",
+        "If application or controller service health violates agreed thresholds, stop further changes and invoke the operator-approved rollback.",
+        "After Cisco-guided recovery and revalidation of cryptographic state, review temporary restrictions with incident command; do not simply restore unknown peers."
+      ],
+      "limitations": "The offline detector reads normalized local JSON and the graph example has imaginary costs. It cannot authenticate telemetry sources, detect all KeyDrift variants, install Cisco-signed fixes, rotate keys or enforce ACLs. Cisco says mitigations are not vulnerability workarounds. Compromise response requires TAC.",
+      "references": [
+        "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-rpa-EHchtZk",
+        "https://www.cisco.com/c/en/us/support/docs/routers/sd-wan/225525-internal-remediate-catalyst-sd-wan.html",
+        "https://blog.talosintelligence.com/uat-11473-keydrift/"
+      ]
+    },
+    {
+      "id": "ivanti-ics-chain-aware-recovery",
+      "name": "Ivanti Connect Secure: restrict exposure, apply chain-aware vendor updates",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-104935"
+      ],
+      "control": "independent management reachability restriction and vendor-controlled firmware update",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "ICS potentially exposed or not confirmed at chain-aware fixed vendor release.",
+      "before": [
+        "Identify hardware generation, exact ICS branch, management topology, VPN sessions and affected service dependencies.",
+        "Preserve off-device logs and current appliance state; engage incident response because exploitation was observed in the wild.",
+        "Confirm signed update availability and compatibility in Ivanti License System. Plan rollback with vendor, not untrusted images."
+      ],
+      "steps": [
+        "Restrict appliance management to approved sources at independent network controls; avoid indiscriminate VPN user disconnection.",
+        "Install vendor-supported chain-aware target for the applicable release and hardware: 25.1.1.3, 25.1.3.1 or 22.8R2.6; review current Ivanti advisory for changed targets.",
+        "Investigate compromise and potential stolen credentials, not only installed version. Escalate suspected exploitation to Ivanti support and incident response."
+      ],
+      "check": [
+        "Confirm the running ICS build, product family and vendor update record.",
+        "Verify remote access, identity integrations, role access, logs and approved VPN user sessions."
+      ],
+      "undo": [
+        "Reverse only optional network access restrictions after vendor-confirmed fix, incident assessment and explicit change approval.",
+        "Use Ivanti-supported recovery if an update or appliance is compromised; do not blindly downgrade."
+      ],
+      "limitations": "Temporary management restriction is not a CVE workaround or exploit clearance; chain-aware targets do not automatically attest appliance integrity.",
+      "references": [
+        "https://hub.ivanti.com/s/article/Security-Advisory-Ivanti-Connect-Secure-CVE-2026-104935",
+        "https://www.cyber.gc.ca/en/alerts-advisories/ivanti-security-advisory-av26-1035"
+      ]
+    },
+    {
+      "id": "f5-bigip-apm-oauth-hotfix",
+      "name": "F5 BIG-IP APM: OAuth configuration assessment and vendor engineering hotfix",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-94127"
+      ],
+      "control": "operator-reviewed vendor-only iRule and signed engineering hotfix",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Potentially affected F5 APM OAuth authorization server.",
+      "before": [
+        "Identify whether an APM access policy and OAuth Authorization Server profile coexist on the same virtual server; record active/inactive peer status.",
+        "Back up device configuration and protect logs; consult F5 support about precise engineering hotfix compatible with software build and certification mode."
+      ],
+      "steps": [
+        "Apply only the F5-provided iRule if approved by F5 Support and change management; do not invent an iRule or disable OAuth blindly.",
+        "Install the authorized engineering hotfix for your branch: 17.1.3.5.0.41.14-ENG, 17.5.1.9.0.160.12-ENG or 21.1.0.2.0.30.22-ENG.",
+        "Restrict unrelated management access to trusted administrative networks while preserving OAuth application dependencies."
+      ],
+      "check": [
+        "Verify the running engineering hotfix identity in vendor tooling, plus HA sync/failover and authentication workflows.",
+        "Review access/authentication failure logs and change records for compromise."
+      ],
+      "undo": [
+        "Remove temporary F5 iRule only under F5-approved rollback plan after fixed-build and traffic validation.",
+        "For patch failures use F5-supported recovery rather than unsupported binary changes."
+      ],
+      "limitations": "Only the specified OAuth Authorization Server configuration is affected. Temporary iRules may affect logins; the toolkit does not install or generate vendor hotfixes.",
+      "references": [
+        "https://my.f5.com/manage/s/article/K000162605",
+        "https://www.cyber.gc.ca/en/alerts-advisories/al26-022-vulnerability-impacting-f5-big-ip-access-policy-manager-apm-cve-2026-94127"
+      ]
+    },
+    {
+      "id": "arista-vco-onprem-restrict-and-upgrade",
+      "name": "Arista VeloCloud On-Prem: restrict admin web exposure and update",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-93952"
+      ],
+      "control": "conditional management web access restriction and vendor upgrade",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Potential on-prem VCO exposure; fixed release or compromise state not verified.",
+      "before": [
+        "Record the VCO release train (5.2, 6.1, 6.4, 7.0), certificate-based Edge authentication and actual public/admin web exposure.",
+        "Back up authorized configuration and preserve off-device web, system and backend logs; coordinate with Arista TAC."
+      ],
+      "steps": [
+        "Restrict VCO web management to approved administrator networks using independent access controls, subject to Edge orchestration and API needs.",
+        "For 5.2.3 upgrade to vendor-fixed 5.2.3.16+; for 6.4.2 upgrade to 6.4.2.8+; for 6.1 and 7.0 contact Arista TAC for current supported fix.",
+        "Investigate suspicious access, service changes and unexpected outbound connections without executing content from logs."
+      ],
+      "check": [
+        "Confirm active VCO version against the correct train and vendor bulletin; test Edge control reachability, policy delivery and administrator workflows.",
+        "Verify evidence and credentials with incident response if compromise indicators exist."
+      ],
+      "undo": [
+        "Restore only authorized admin access if a temporary perimeter restriction interrupts approved workflows.",
+        "Follow Arista-supported recovery or replacement if VCO host integrity is in doubt."
+      ],
+      "limitations": "Network restrictions may break Edge management. Unlisted software train is UNKNOWN, never confirmed fixed. Hosted/Dedicated services already had provider remediation in vendor statement.",
+      "references": [
+        "https://www.arista.com/en/support/advisories-notices/security-advisory/24765-security-advisory-0183"
+      ]
+    },
+    {
+      "id": "cisco-manager-webauth-live-protect",
+      "name": "Cisco SD-WAN Manager: Live Protect option, signed upgrade and TAC review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-76504"
+      ],
+      "control": "operator-reviewed Cisco Live Protect temporary shield and vendor-signed Manager upgrade",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Potentially vulnerable self-managed Cisco Catalyst SD-WAN Manager release.",
+      "before": [
+        "Identify every Manager (vManage) node, exact SD-WAN train, cluster compatibility, DR nodes and externally exposed manager access.",
+        "Before upgrade collect Admin-Tech logs/tech bundles from all Managers as Cisco directs; use independent evidence retention."
+      ],
+      "steps": [
+        "Prioritize Cisco-signed upgrades for 20.9.10.1, 20.12.8.2, 20.15.6.1, 20.18.4.1, 26.1.2.1 or 26.2.1 according to the actual train.",
+        "Where upgrade needs planning, review Cisco Live Protect shield with Cisco docs and an operator; it provides only temporary partial coverage and may break legitimate URI-encoded login.",
+        "Restrict untrusted internet reachability to management ports only when compatible with authorized control traffic; no automatic firewall isolation.",
+        "Open Cisco TAC case and submit pre-upgrade Admin-Tech for IOC review. If compromised, follow TAC-directed reconstitution and credential/key recovery."
+      ],
+      "check": [
+        "Confirm all relevant running Manager builds meet vendor fix and manager/controller/validator compatibility; validate failover, routes and tunnels.",
+        "Verify no loss of admin access after any shield and review off-device logs with TAC."
+      ],
+      "undo": [
+        "Remove Live Protect temporary shield only when Cisco approves the fixed state and access paths are tested.",
+        "Roll back containment only through approved change procedure, not automatic full network restoration."
+      ],
+      "limitations": "Cisco explicitly says no full workaround; Live Protect shield partial. Upgrade is required; a software version does not establish integrity after compromise.",
+      "references": [
+        "https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-sdwan-webauth-xr8beuuU.html",
+        "https://www.cisco.com/c/en/us/support/docs/routers/sd-wan/226384-remediate-catalyst-sd-wan-security.html"
+      ]
+    },
+    {
+      "id": "beyondtrust-remote-support-bt26-05",
+      "name": "BeyondTrust Remote Support: verify BT26-05-RS patch installation",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-102764"
+      ],
+      "control": "vendor patch attestation and approved support-surface restriction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Remote Support appliance not confirmed at BT26-05-RS patch state.",
+      "before": [
+        "Identify SaaS or self-hosted instance, actual appliance Remote Support version and update subscription state.",
+        "Capture configuration/active sessions and plan impact to support access and integrations."
+      ],
+      "steps": [
+        "SaaS: obtain deployment confirmation for BeyondTrust patch applied by vendor as of October 9, 2026.",
+        "Self-hosted: apply BT26-05-RS through appliance vendor-supported update workflow; versions below 24.3.1 must be upgraded to supported release before patch.",
+        "Limit unnecessarily exposed support interfaces via existing independent access controls only with approved service owner."
+      ],
+      "check": [
+        "Verify the specific BT26-05-RS patch applied (base software version alone is insufficient).",
+        "Check active support sessions, authentication, audit logs, integrations and compliance recording functions."
+      ],
+      "undo": [
+        "Revert temporary access restrictions only after vendor patch confirmation and authorized testing.",
+        "For patch installation failure use BeyondTrust-supported recovery; do not downgrade to a vulnerable build."
+      ],
+      "limitations": "A Remote Support version through 26.2.3 may still be affected without BT26-05-RS. SaaS update is vendor-managed. No guaranteed complete containment by network ACL alone.",
+      "references": [
+        "https://www.beyondtrust.com/trust-center/security-advisories/bt26-05"
+      ]
+    },
+    {
+      "id": "collabora-richdocumentscode-upgrade",
+      "name": "Nextcloud built-in CODE: upgrade affected richdocumentscode app",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-110447"
+      ],
+      "control": "signed/official Nextcloud app upgrade or approved temporary disable",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Nextcloud richdocumentscode older than 26.4.303 or version unknown.",
+      "before": [
+        "Confirm this is Nextcloud richdocumentscode built-in CODE Server, not standalone Collabora Online; record installed app version.",
+        "Preserve HTTP logs and document service state; review webroot for unexpected created PHP files if compromise is suspected."
+      ],
+      "steps": [
+        "Use the trusted Nextcloud app update workflow to install richdocumentscode 26.4.303 or later, with supported Nextcloud compatibility and backup.",
+        "If immediate update is impossible, temporarily disable the vulnerable built-in CODE Server app after business-owner approval and arrange another supported document editing service.",
+        "Review suspicious proxy.php requests and unexpected write activity; refer suspected compromise to incident response."
+      ],
+      "check": [
+        "Confirm running richdocumentscode app version 26.4.303+ and integrity of Nextcloud files.",
+        "Verify authenticated document editing and that an app server restart does not expose old proxy behavior."
+      ],
+      "undo": [
+        "Restore document editing only with an approved fixed version, not the vulnerable app.",
+        "Use supported Nextcloud backup/restore on update failures; do not re-enable compromised webshell paths."
+      ],
+      "limitations": "Affects built-in CODE Server during conditions such as server not running; standalone Collabora not affected by this CVE. A version floor does not clear a compromised server.",
+      "references": [
+        "https://github.com/CollaboraOnline/richdocumentscode/issues/354",
+        "https://www.cve.org/CVERecord?id=CVE-2026-110447"
+      ]
+    },
+    {
+      "id": "freertos-mpu-queue-set-update",
+      "name": "FreeRTOS MPU queue sets: firmware rebuild and vendor flash",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-119086"
+      ],
+      "control": "version and build-flag verification; vendor-signed firmware remediation",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Embedded device firmware includes FreeRTOS-Kernel 7.4.0–11.3.2 on MPU-enabled port with queue sets enabled.",
+      "before": [
+        "Inventory exact hardware, FreeRTOS-Kernel commit/version, fork, MPU port, configUSE_QUEUE_SETS, device update and recovery procedure.",
+        "Preserve known-good signed firmware and validate power-loss recovery or dual-bank/rollback if supported."
+      ],
+      "steps": [
+        "Obtain FreeRTOS-Kernel V11.3.3 or device-vendor fix for the actual fork; rebuild with project-supported compiler and config.",
+        "Use only device-vendor approved signed firmware flashing during a maintenance window; do not automatically flash all FreeRTOS devices.",
+        "If you cannot update, review whether removing queue-set usage is supported; disabling it may break scheduling and is not a general guaranteed mitigation."
+      ],
+      "check": [
+        "Confirm the flashed running image contains the fixed kernel code and re-check build flags.",
+        "Run board-specific unit, scheduling, watchdog, privilege isolation and failover tests."
+      ],
+      "undo": [
+        "Use board-vendor supported known-good recovery firmware if update validation fails, coordinating CVE exposure risk.",
+        "Re-test device communications and privilege isolation before production resumption."
+      ],
+      "limitations": "No generic FreeRTOS patch binary or universal signed device image exists. Non-queue-set builds are not affected by this issue; unsafe MCU flashing can brick devices.",
+      "references": [
+        "https://aws.amazon.com/security/security-bulletins/2026-158-aws/",
+        "https://github.com/FreeRTOS/FreeRTOS-Kernel/security/advisories/GHSA-56j9-g43f-8g6v"
+      ]
+    },
+    {
+      "id": "aws-nitro-enclaves-c-sdk-rebuild",
+      "name": "AWS Nitro Enclaves SDK C: update and rebuild enclave images",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-119116",
+        "CVE-2026-119148"
+      ],
+      "control": "vendor SDK upgrade, enclave rebuild and attestation validation",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "An AWS Nitro Enclave image embeds affected SDK C <=0.4.5 and/or kmstool-enclave-derived code.",
+      "before": [
+        "Identify the affected enclave image, SDK dependency, parent instance, launch path and KMS attestation policy.",
+        "Plan enclave replacement, rollback to a verified-safe image, key-management review and downtime."
+      ],
+      "steps": [
+        "Use AWS-supplied v0.4.6 or later SDK C source/release and rebuild enclave image from a trusted pipeline.",
+        "Redeploy the rebuilt image using the application's existing attestation and rollout process; do not treat host OS updates as image updates.",
+        "Investigate whether parent-instance access or KMS-response trust could have been compromised; engage the security owner for recovery decisions."
+      ],
+      "check": [
+        "Verify actual in-image SDK version/build provenance, enclave measurements and KMS attestation trust conditions.",
+        "Run permitted KMS read/write integration tests and check correct host-to-enclave IPC controls."
+      ],
+      "undo": [
+        "Use approved image rollback only to a separately verified fixed/trusted build; avoid reverting to known-vulnerable images.",
+        "Re-check attestation, key access and service health."
+      ],
+      "limitations": "AWS states there are no workarounds. CVE-2026-119116 affects kmstool-enclave or derived code; CVE-2026-119148 affects the SDK library. Does not patch running enclaves automatically.",
+      "references": [
+        "https://aws.amazon.com/security/security-bulletins/2026-157-aws/"
+      ]
+    },
+    {
+      "id": "aws-kpl-credential-leak",
+      "name": "Amazon Kinesis Producer Library Java: credential-leak response",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-119117"
+      ],
+      "control": "vendor library migration, log redaction and credential-exposure response",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Kinesis Producer Library Java <=0.15.12 (legacy) or <1.0.8 (new group ID) is in use.",
+      "before": [
+        "Inventory resolved Maven coordinates and image layers. Identify affected credentials, local process-list access and logs from affected periods.",
+        "Plan credential rotation and IAM session revocation with downstream service owners before migrating."
+      ],
+      "steps": [
+        "Migrate legacy com.amazonaws group users to software.amazon.kinesis:amazon-kinesis-producer >=1.0.8; update 1.x users to >=1.0.8 and redeploy.",
+        "Until upgrade, set the precise daemon logger (software.amazon.kinesis.producer.Daemon or com.amazonaws.services.kinesis.producer.Daemon) to INFO or higher and redact messages beginning 'Starting Native Process'.",
+        "Restrict untrusted local user/process access and log readers; affected process argument lists can still disclose credentials until upgraded.",
+        "Rotate leaked long-term IAM keys and revoke active role sessions where needed. Review or purge exposed logs per policy."
+      ],
+      "check": [
+        "Verify deployed Maven artifact and version via dependency manifest/SBOM, not just build file.",
+        "Verify native process arguments and daemon logs no longer expose credentials, and Kinesis PutRecords plus metric publishing work."
+      ],
+      "undo": [
+        "Roll back logging restrictions only if still appropriate after verified upgrade and log hygiene.",
+        "Do not revert to an affected KPL release or restore compromised IAM credentials."
+      ],
+      "limitations": "Log settings are partial mitigation only; affected native process argument lists may still disclose credentials. KPL LogLevel alone does not control the daemon logger. Existing leaked credentials require revocation; upgrading does not undo exposure.",
+      "references": [
+        "https://aws.amazon.com/security/security-bulletins/2026-159-aws/"
+      ]
+    },
+    {
+      "id": "delinea-secret-server-1231",
+      "name": "Delinea Secret Server: JWT, login and FIDO2 patch review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-115830",
+        "CVE-2026-115829",
+        "CVE-2026-115828"
+      ],
+      "control": "Delinea-managed version 12.3.1 update and access/audit review",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Delinea Secret Server on-prem or cloud version 12.2.7 or earlier, or a tenant with unknown release state.",
+      "before": [
+        "Inventory Secret Server deployment, actual running version and connected identity providers, key administrators and FIDO2 devices.",
+        "Backup supported configuration and capture privileged audit logs under change control."
+      ],
+      "steps": [
+        "Apply vendor-supported Secret Server 12.3.1 update or obtain Delinea cloud tenant deployment confirmation.",
+        "Temporarily restrict unnecessary administrative exposure through an independent access control only if service owners approve; do not disable all vault access.",
+        "Investigate unusual cloudadmin role issuance, second-factor-only login paths and weakened FIDO2 verification; revoke suspicious sessions and rotate credentials after incident response review."
+      ],
+      "check": [
+        "Verify running Secret Server release and tenant patch record.",
+        "Test valid admin JWT issuance, normal first/second factor login, FIDO2 user-presence verification, audit event capture and vault availability."
+      ],
+      "undo": [
+        "Remove only temporary perimeter restrictions after patch proof and access testing.",
+        "For failed updates use Delinea's supported recovery; do not downgrade to an affected build."
+      ],
+      "limitations": "Upgrading is the vendor fix; blocking access is not a substitute. Older 12.2.x builds are affected but the toolkit cannot automatically compare mixed branches or confirm managed cloud rollout.",
+      "references": [
+        "https://delinea.com/security-advisories",
+        "https://docs.delinea.com/online-help/secret-server/release-notes/ss-rn-12-3-000001.htm"
+      ]
+    },
+    {
+      "id": "ivanti-ics-dscache-chain",
+      "name": "Ivanti Connect Secure: DSCache escalation / chained exploitation",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-111357"
+      ],
+      "control": "signed firmware upgrade with independent compromise review",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Ivanti Connect Secure branch affected by DSCache trust error, especially public-facing or suspected-compromised appliances.",
+      "before": [
+        "Inventory exact hardware/virtual/cloud appliance train and signed active build. Assess CISA KEV priority and capture forensic evidence without relying solely on appliance logs.",
+        "Plan HA node rotation, integrity checks, full compromise response, remote-user impact and vendor-approved upgrade path."
+      ],
+      "steps": [
+        "Use Ivanti advisory's appropriate signed upgrade; 22.8R2.6 or 25.1.1.3 are documented fixed targets for applicable branches. Do not treat 22.8R2.5 as fixing the full exploitation chain.",
+        "Perform Ivanti's Integrity Checker and threat hunting; a clear scan does not prove no persistence.",
+        "If compromise is suspected, involve vendor/incident response and follow approved rebuild, certificate/secret rotation and re-enrollment procedures."
+      ],
+      "check": [
+        "Verify actual active release and appliance branch compatibility, plus authentication and VPN access for authorized clients.",
+        "Review independent logs and indicators of exploitation and verify post-recovery identities and certificates."
+      ],
+      "undo": [
+        "Restore connectivity through HA/approved maintenance if availability changes; never restore known-compromised firmware images.",
+        "Confirm vendor fixed build, log collection and normal VPN access before closure."
+      ],
+      "limitations": "CVE is listed as exploited in CISA KEV; upgrading alone does not clear prior compromise. No safe universal config-only workaround or OS-level hotfix; upgrade paths are device dependent.",
+      "references": [
+        "https://hub.ivanti.com/s/article/Security-Advisory-Ivanti-Connect-Secure-CVE-2026-104935",
+        "https://www.cyber.gc.ca/en/alerts-advisories/ivanti-security-advisory-av26-1035"
+      ]
+    },
+    {
+      "id": "brotli-decoder-rebuild",
+      "name": "Brotli decoder: update embedded runtime and industrial product dependencies",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "control": "signed upstream/vendor fixes and conditional decompression restriction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "An application, container, Node.js/.NET/Python package, or industrial software decodes attacker-controlled Brotli data with affected code.",
+      "before": [
+        "Inventory native linked Brotli and all container, dependency, runtime and OEM layers. Confirm that untrusted input reaches the decoder; mere package presence is not proof of exploitability.",
+        "Identify loss of HTTP body support and downstream interoperability if br decompression is restricted."
+      ],
+      "steps": [
+        "Use corresponding upstream Brotli fixed version 1.0.10, 1.1.1, or 1.2.1 where applicable; rebuild and redeploy binaries, not just update package manifests.",
+        "For Node.js use vendor-secured 22.23.4+, 24.22.2+ (accounts for 24.22.1 regression), or 26.12.1+ with branch-aware packaging; update independently bundled Brotli too.",
+        "For .NET use Microsoft's fixed serviced runtimes (8.0.33, 9.0.22, 10.0.14), when applicable; test restarted application workloads.",
+        "For Siemens industrial products follow the exact Siemens ProductCERT device/product advice; a generic Brotli library hotfix is not a signed industrial controller update.",
+        "If an approved upgrade is unavailable, consider refusing untrusted Brotli decoding in the affected app, with explicit functional testing. Blocking incoming Content-Encoding: br alone does not cover other Brotli inputs."
+      ],
+      "check": [
+        "Verify exact loaded runtime/native library or static-binary revision after restarting and re-deploying; confirm vendor backports via written bulletin.",
+        "Test legitimate compression paths, business applications and independent incident monitoring without transmitting hostile payloads."
+      ],
+      "undo": [
+        "Roll back ingress decompression restrictions only after a fixed runtime and normal service tests are confirmed.",
+        "Never downgrade to affected decoder code; use vendor-supported recovery for failed deployments."
+      ],
+      "limitations": "Cross-language CVE; version floors in this repository apply only to upstream Brotli decoder library releases, not to bundled products/OS packages. Untrusted decompression is the exposure path. No universal binary patch or full network-only mitigation.",
+      "references": [
+        "https://github.com/advisories/GHSA-9v8h-qqgm-4m35",
+        "https://cert-portal.siemens.com/productcert/html/ssa-045512.html",
+        "https://github.com/dotnet/runtime/security/advisories/GHSA-p3jp-9v83-76w9",
+        "https://aws.amazon.com/security/security-bulletins/2026-155-aws/"
+      ]
     }
   ]
 }
