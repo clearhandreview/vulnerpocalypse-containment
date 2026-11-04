@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_as_of": "2026-10-30",
+  "reviewed_as_of": "2026-11-03",
   "scope": "Conditional operator-reviewed exposure reduction and vendor update handoffs. Only Linux MPTCP has an opt-in executable host control. No universal hotfix.",
   "profiles": [
     {
@@ -369,6 +369,1148 @@
       "references": [
         "https://www.veeam.com/kb4961",
         "https://www.veeam.com/kb4949"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-97229-review",
+      "name": "GitLab CE/EE — CVE-2026-97229 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-97229"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Untrusted CI/CD regular-expression input can cross into server-process execution. Affected 19.2/19.3/19.4 branches require exact build/runtime inventory.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Branch fixes 19.2.8, 19.3.5 or 19.4.2, or supported successors containing the fix.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Patch release October 12; CVE October 13; KEV addition October 29. Reconcile runtime, queued work, build outputs and potentially exposed credentials. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/97xxx/CVE-2026-97229.json",
+        "https://docs.gitlab.com/releases/patches/patch-release-gitlab-19-4-2-released/",
+        "https://www.ruby-lang.org/en/news/2026/10/23/regexp-fixes-for-gitlab-cves/"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-76418-review",
+      "name": "Cisco ASA / FTD — CVE-2026-76418 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-76418"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Unauthenticated SSL VPN authentication-handler denial of service/reload, dependent on release and secondary-authentication/tunnel-group configuration.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Use Cisco’s branch-specific corrected release. Published configuration mitigation requires preservation of protected authentication factors.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Check default tunnel-group scope. Removing secondary authentication can weaken security and is not cleared for deployment. Reload alone does not establish H4. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/76xxx/CVE-2026-76418.json",
+        "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-asaftd-tunnel-dos-s6mgkb75"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-118527-review",
+      "name": "Ivanti Connect Secure — CVE-2026-118527 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-118527"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Authenticated upload can place controlled content at a predictable on-disk filename; other components can supply access and escalation.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: CNA lists branch correction points 25.1.1.3 and 22.8R2.6; validate the complete supported chain correction.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: CVE publication November 3 is later than the already known October exploitation/KEV context. Do not label this CVE alone unauthenticated root execution. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/118xxx/CVE-2026-118527.json",
+        "https://www.volexity.com/blog/2026/10/13/a-series-of-unauthenticated-events-chained-exploitation-of-ivanti-connect-secure-zero-days/"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120306-review",
+      "name": "Beam Beta9 build workers — CVE-2026-120306 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120306"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Authorized build activity can cross build isolation into privileged worker authority.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Corrected worker 0.1.756; verify the actual deployed image and supported successor.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: September fix was formalized by a November CVE. Exact worker privileges and tenant/build separation require deployment-specific validation. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120306.json",
+        "https://github.com/beam-cloud/beta9/pull/1897",
+        "https://github.com/beam-cloud/beta9/commit/a28bf12cf0007c792a25d8ed282b4e8bf6f30393",
+        "https://github.com/beam-cloud/beta9/releases/tag/worker-0.1.756"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120307-review",
+      "name": "Beam Beta9 sandbox file API — CVE-2026-120307 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120307"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "A workspace token and running sandbox can reach file operations outside the sandbox boundary.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Corrected worker 0.1.756; authenticate and activate the correct worker artifact.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Review every worker filesystem/credential boundary; gateway authentication alone is not host-path confinement. September correction is not a new November patch. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120307.json",
+        "https://github.com/beam-cloud/beta9/pull/1897",
+        "https://github.com/beam-cloud/beta9/commit/a28bf12cf0007c792a25d8ed282b4e8bf6f30393",
+        "https://github.com/beam-cloud/beta9/releases/tag/worker-0.1.756"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120308-review",
+      "name": "Beam Beta9 volumes — CVE-2026-120308 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120308"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Volume admission fails workspace-ownership and path-confinement checks across gateway/worker components.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Gateway 0.1.776 AND worker 0.1.756, with supported handling of previously persisted stubs.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Updating only one component is insufficient evidence. Validate ownership and confinement for persisted state before privileged reuse. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120308.json",
+        "https://github.com/beam-cloud/beta9/pull/1897",
+        "https://github.com/beam-cloud/beta9/commit/a28bf12cf0007c792a25d8ed282b4e8bf6f30393",
+        "https://github.com/beam-cloud/beta9/releases/tag/worker-0.1.756",
+        "https://github.com/beam-cloud/beta9/releases/tag/gateway-0.1.776"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-119050-review",
+      "name": "Agno PandasTools — CVE-2026-119050 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-119050"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Model-controlled tool dispatch can reach unintended pandas/host capabilities; CNA says through 3.1.11.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: No merged supported fixed release verified. Server-side tool removal and independent runtime isolation are candidates pending validation.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Public issue #8699 and proposed PR #8713 date to July 2; PR was open when reviewed. Do not assume 3.1.12 fixed it or count an October discovery. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/119xxx/CVE-2026-119050.json",
+        "https://github.com/agno-agi/agno/issues/8699",
+        "https://github.com/agno-agi/agno/pull/8713"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-119978-review",
+      "name": "Flowise custom functions — CVE-2026-119978 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-119978"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Authenticated custom-function execution through 3.1.4 with ALLOW_BUILTIN_DEP=true can compose allowed module/filesystem capabilities into host execution.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Exact supported fixed release Unknown. Candidate: suspend the affected capability and constrain execution externally while confirming a maintainer correction.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: CVE-2026-73483 is a distinct sibling. Its 3.1.3 fix does not establish a fix here; neither is 3.1.5 assumed corrected. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/119xxx/CVE-2026-119978.json",
+        "https://github.com/FlowiseAI/Flowise/security/advisories/GHSA-9gvv-qjj3-2p6g"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120311-review",
+      "name": "Network-AI FileJobStore — CVE-2026-120311 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120311"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "FileJobStore JSON read/delete path confinement can be crossed; affected range 5.13.4–before 5.15.5.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Update to 5.15.5 on a supported dependency path. Independently protected policy storage is a candidate compensating boundary.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Do not promote file primitives to demonstrated RCE. Validate that worker/job authority cannot alter or invalidate authorization policy. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120311.json",
+        "https://github.com/Jovancoding/Network-AI/security/advisories/GHSA-v64j-mc7x-c7x7",
+        "https://github.com/Jovancoding/Network-AI/releases/tag/v5.15.5"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120312-review",
+      "name": "Network-AI AgentVCR — CVE-2026-120312 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120312"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Cassette JSON read/write path confinement can be crossed; affected range 5.13.4–before 5.15.5.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Update to 5.15.5; test cassette and policy-store separation with dummy data.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Policy replacement/reload/missing-file behavior remains a validation question, not proof of a surviving flaw or observed compromise. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120312.json",
+        "https://github.com/Jovancoding/Network-AI/security/advisories/GHSA-mfxv-jg44-xj48",
+        "https://github.com/Jovancoding/Network-AI/releases/tag/v5.15.5"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120313-review",
+      "name": "Network-AI InputSanitizer — CVE-2026-120313 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120313"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Path checks can accept a sibling directory prefix outside the intended root; versions before 5.15.5.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Update to 5.15.5 and verify every affected helper call site plus independent OS filesystem restrictions.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Input validation is not an independent host boundary. No unverified symlink/race or post-fix bypass claim is made. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120313.json",
+        "https://github.com/Jovancoding/Network-AI/security/advisories/GHSA-5mm5-4mh4-6gm6",
+        "https://github.com/Jovancoding/Network-AI/releases/tag/v5.15.5"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120314-review",
+      "name": "Network-AI A2AServer — CVE-2026-120314 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120314"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Server can fail open without a configured secret; CNA range 5.14.0–before 5.15.5 differs from broader maintainer wording.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: 5.15.5 requires a secret except explicit loopback development opt-out; validate matched client/server transport changes.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Check listeners, all task operations and direct bypass routes. Authentication does not independently fix the sibling path-confinement defects. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120314.json",
+        "https://github.com/Jovancoding/Network-AI/security/advisories/GHSA-qvf5-9prv-7r9c",
+        "https://github.com/Jovancoding/Network-AI/releases/tag/v5.15.5"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120315-review",
+      "name": "LobeHub Chat — CVE-2026-120315 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120315"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Authenticated file-parsing path can write host files. CNA lower bound 1.84.26 differs from broader vendor wording; fixed boundary 2.1.49.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Maintainer maps correction to 2.1.49. Confirm actual parser image, queued inputs and immutable code/configuration boundaries.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Do not infer all earlier versions are safe from a narrow CNA lower bound. Access restriction alone does not dispose of already queued files. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120315.json",
+        "https://github.com/lobehub/lobehub/security/advisories/GHSA-2g9j-v25c-4j97"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120322-review",
+      "name": "Termix / File Manager — CVE-2026-120322 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120322"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Authenticated file-transfer destination handling can cross into server filesystem authority; 2.9.0/.1/.2 are listed.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: CNA maps correction to core 26.10.0 and standalone File Manager plugin 1.0.0; obtain mechanism-specific vendor confirmation.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Calendar-version transition and plugin/core distinctions matter. Do not recommend an unsupported downgrade to 2.8 or treat a public exploit as in-the-wild evidence. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120322.json",
+        "https://github.com/Termix-SSH/Termix/releases/tag/v26.10.0"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-18199-review",
+      "name": "ManageEngine Password Manager Pro / PAM360 — CVE-2026-18199 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-18199"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Authenticated low-privilege OS command execution in affected privileged-management products.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Password Manager Pro 13236, fixed July 31; PAM360 8601, fixed July 30. Match exact product/build and upgrade sequence.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: November CVE publication is not a new July patch. Separately assess possible authority exposure and safe credential recovery. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/18xxx/CVE-2026-18199.json",
+        "https://www.manageengine.com/products/passwordmanagerpro/advisory/cve-2026-18199.html",
+        "https://www.manageengine.com/products/passwordmanagerpro/release-notes.html",
+        "https://www.manageengine.com/privileged-access-management/release-notes.html"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-62374-review",
+      "name": "SD JWT JS core / decoder — CVE-2026-62374 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-62374"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Tampered disclosure can be silently omitted despite a valid issuer signature; authorization can change if missing restricting claims are accepted.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: @sd-jwt/core 0.20.0 is fixed. Standalone @sd-jwt/decode corrected release Unknown. Candidate: fail closed for operation-required claims.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Affected core/decode through 0.19.0. July 2 disclosure was later indexed; holder binding is not a universal fix and core version guidance must not be transferred to decode. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/62xxx/CVE-2026-62374.json",
+        "https://github.com/openwallet-foundation/sd-jwt-js/security/advisories/GHSA-f9j6-8p6x-r9j6",
+        "https://raw.githubusercontent.com/github/advisory-database/main/advisories/github-reviewed/2026/11/GHSA-f9j6-8p6x-r9j6/GHSA-f9j6-8p6x-r9j6.json"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-114406-review",
+      "name": "eMudhra / Red Hat trust-store consumers — CVE-2026-114406 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-114406"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Trust-store/certificate distrust must propagate through packages, containers, runtimes and private certificate bundles.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Use product/channel-specific vendor distrust updates and supported rebuilds; evaluate only vendor-supported blocklisting with exact certificate identity.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Root-versus-intermediate naming and fingerprints require reconciliation. No guessed blanket certificate removal; exact trust consumer and TLS compatibility matter. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/114xxx/CVE-2026-114406.json",
+        "https://access.redhat.com/security/vulnerabilities/RHSB-2026-012",
+        "https://access.redhat.com/solutions/7149312",
+        "https://access.redhat.com/solutions/7149347",
+        "https://access.redhat.com/solutions/7149407"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120309-review",
+      "name": "Nuxt / @nuxt/nitro-server — CVE-2026-120309 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120309"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Routes mixing parameter sources can check one resource identity and look up another; affected 4.6.0–before 4.6.2.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Nuxt 4.6.2; maintainer workaround is one canonical parameter source for authorization and lookup.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Inspect actual route patterns and enforce resource authorization independently; Nuxt 3 is outside the stated affected scope. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120309.json",
+        "https://github.com/nuxt/nuxt/security/advisories/GHSA-w7gw-66vg-99gq",
+        "https://github.com/nuxt/nuxt/releases/tag/v4.6.2"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120310-review",
+      "name": "Parse Server — CVE-2026-120310 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120310"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Write-only object access can leak stored values in an update response.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Branch corrections 8.6.109 or 9.10.6-alpha.1; choose a supported branch, not an unnecessary move to alpha.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Custom triggers/protected fields and transaction behavior affect validation. Use dummy objects to verify response confidentiality and legitimate updates. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120310.json",
+        "https://github.com/parse-community/parse-server/security/advisories/GHSA-2rcp-jc67-vq74",
+        "https://github.com/parse-community/parse-server/pull/10799"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120534-review",
+      "name": "ACF Extended PRO for WordPress — CVE-2026-120534 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-120534"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Through 0.9.2.6, unauthenticated function dispatch depends on nondefault shortcode_preview or the missing-OpenSSL fallback path.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Exact supported fixed release Unknown. Suspend affected capabilities only through supported, validated owner-specific configuration.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Underlying disclosure September 14; November 3 CVE indexing is not a new attack. Changelog 0.9.2.7/.8 does not establish this fix. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120534.json",
+        "https://www.wordfence.com/threat-intel/vulnerabilities/id/b8a7a925-2b9e-43bc-b649-c7ec518e063c?source=cve",
+        "https://www.acf-extended.com/changelog"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-89292-review",
+      "name": "Eclipse Mnestix Browser — CVE-2026-89292 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-89292"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Unauthenticated server-side request behavior can disclose backend API keys for configured infrastructures; affected 1.6.0–before 2.3.0.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: 2.3.0 is outside the CNA affected range; exact supported corrected artifact/upgrade route not independently obtained. Candidate: independent ingress/egress/key-scope restrictions.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Detailed Eclipse issues were inaccessible. Do not infer actual key theft or backend root authority; an upgrade does not withdraw an exposed key. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/89xxx/CVE-2026-89292.json",
+        "https://gitlab.eclipse.org/security/vulnerability-reports/-/work_items/773",
+        "https://gitlab.eclipse.org/security/cve-assignment/-/work_items/302"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-42922-review",
+      "name": "FUXA / embedded Node-RED — CVE-2026-42922 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-42922"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Node-RED administration can cross the intended FUXA authentication/authorization boundary; Talos identifies build 1.3.2-2809.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Supported release containing the documented 1.3.3 correction; independently restrict the administration surface pending product-specific validation.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Closely overlaps July GHSA-5h5x-9h7x-23f4 / CVE-2026-67443. Alias status and role-specific limits remain unresolved; do not count two discoveries. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/42xxx/CVE-2026-42922.json",
+        "https://eu.talosintelligence.com/vulnerability_reports/TALOS-2026-2419",
+        "https://github.com/frangoteam/FUXA/security/advisories/GHSA-5h5x-9h7x-23f4",
+        "https://github.com/frangoteam/FUXA/releases/tag/v1.3.3",
+        "https://github.com/frangoteam/FUXA/pull/2393"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-116606-review",
+      "name": "Barracuda Email Security Gateway — CVE-2026-116606 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-116606"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Configuration-restore authentication bypass; CNA describes unauthenticated access, while vendor narrative says administrator access is needed.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Use exact supported ESG firmware/security-patch route; vendor lists BNSF-40425 and BNSF-40430 for different branches. Restrict management access.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: CNA range before 9.4.0.030 and vendor patch branch notation require literal preservation/confirmation. A version label alone does not prove patch installation. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/116xxx/CVE-2026-116606.json",
+        "https://trust.barracuda.com/security/pre-authentication-authorization-bypass-command-injection",
+        "https://raw.githubusercontent.com/mandiant/Vulnerability-Disclosures/master/2026/MNDT-2026-0042.md"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-111560-review",
+      "name": "Barracuda appliance product families — CVE-2026-111560 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-111560"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Administrator-controlled timezone content can reach root command execution across six listed appliance product families.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Use product-specific firmware/security-patch combination; vendor also recommends trusted-internal-network administrative access.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Map ESG, ADC, WAF, WSG, Message Archiver or Cloud Control separately. Later processing does not establish formerly authorized queued-command execution under H3. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/111xxx/CVE-2026-111560.json",
+        "https://trust.barracuda.com/security/pre-authentication-authorization-bypass-command-injection",
+        "https://raw.githubusercontent.com/mandiant/Vulnerability-Disclosures/master/2026/MNDT-2026-0041.md"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-107441-review",
+      "name": "Zyxel GS1900 switches — CVE-2026-107441 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-107441"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Adjacent-network CGI out-of-bounds write on ten listed GS1900 models.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Model-specific 2.90(... .3)C0 images correct corresponding affected through-.2 C0 builds; use exact vendor table.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: ABTP model naming differs between CNA and vendor. Confirm model/revision/image, management path, switching continuity and supported recovery. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/107xxx/CVE-2026-107441.json",
+        "https://community.zyxel.com/en/discussion/34523/zyxel-security-advisory-for-out-of-bounds-write-vulnerability-in-gs1900-series-switches",
+        "https://www.zyxel.com/global/en/support/security-advisories/zyxel-security-advisory-for-out-of-bounds-write-vulnerability-in-gs1900-series-switches-11-03-2026"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-76955-review",
+      "name": "Zyxel APs / FWA7 / security routers — CVE-2026-76955 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-76955"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Adjacent-network zdp_wtp buffer overflow can escalate privileges; vendor matrix spans 42 models.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Use exact model-specific corrected image; WAC500H requires support hotfix, USG LITE 60AX uses cloud distribution.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: LAN/WLAN exposure is not covered by a WAN or web-only restriction. Cloud release does not prove actual device installation. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/76xxx/CVE-2026-76955.json",
+        "https://community.zyxel.com/en/discussion/34522/zyxel-security-advisory-for-buffer-overflow-vulnerability-in-certain-aps-fwa7-and-security-routers",
+        "https://www.zyxel.com/global/en/support/security-advisories/zyxel-security-advisory-for-buffer-overflow-vulnerability-in-certain-aps-fwa7-and-security-routers-11-03-2026"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-120198-review",
+      "name": "WAVLINK WL-WN530BE1-A — CVE-2026-120198 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-120198"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Remote HTTP command injection; firmware V251117 explicitly listed, actual interface reachability unknown.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: No supported corrected vendor image/workaround verified. Candidate: independently restrict management reachability or isolate an exposed device.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Support lifecycle and all WAN/LAN/WLAN paths require evidence. A public exploit report is not confirmed in-the-wild exploitation. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120198.json"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-111461-review",
+      "name": "Moxa OnCell G3150A-LTE — CVE-2026-111461 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-111461"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "SMS management flaw in an unsupported product; CNA names 1.0.0 and defaults to affected, government guidance lists all firmware.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Vendor-CNA recommends disabling unnecessary SMS management. No supported update established; plan owner/vendor-supported isolation or replacement.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: An IP firewall does not mediate SMS delivery. Unsupported does not mean immutable silicon; carrier-side restrictions need independent effectiveness evidence. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/111xxx/CVE-2026-111461.json",
+        "https://www.moxa.com/en/support/product-support/security-advisory/mpsa-269510-cve-2026-111459-cve-2026-111460-cve-2026-111461-vulnerabilities-in-moxa-remote-connect-suite-mrc-client",
+        "https://www.cyber.gc.ca/en/alerts-advisories/control-systems-moxa-security-advisory-av26-1089"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-97631-review",
+      "name": "TianoCore EDK II NetworkPkg / PXE — CVE-2026-97631 vendor fix and containment review",
+      "platforms": [
+        "network"
+      ],
+      "cves": [
+        "CVE-2026-97631"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "Pre-boot network/PXE boundary; source scope through edk2-stable202608, with actual OEM image mapping unknown.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Upstream fix PR #13302 merged October 15; advisory October 22, later Mu backports. Obtain a supported model-specific OEM image.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Candidate: disable unused PXE or independently isolate provisioning, conditional on boot/recovery needs. Never equate a source merge with installed firmware or immutable hardware. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/97xxx/CVE-2026-97631.json",
+        "https://github.com/tianocore/edk2/security/advisories/GHSA-99cj-7hg9-mp4m",
+        "https://github.com/tianocore/edk2/pull/13302"
+      ]
+    },
+    {
+      "id": "handoff-cve-2026-103653-review",
+      "name": "Qt CoAP — CVE-2026-103653 vendor fix and containment review",
+      "platforms": [
+        "service"
+      ],
+      "cves": [
+        "CVE-2026-103653"
+      ],
+      "control": "independent read-only review, vendor-controlled update and conditional exposure reduction",
+      "confidence": "vendor_guidance_conditional_not_cve_fix",
+      "when_to_use": "CoAP parsing can read out of bounds, crash or produce incorrect data; affected 5.13.0–6.8.8 and 6.9.0–6.11.2.",
+      "before": [
+        "Identify actual product, affected version/branch, host environment, upstream/downstream components and business-service owner. OS name alone is not applicability evidence.",
+        "Preserve independent logs/configuration and a supported recovery path. Identify dependencies before changing routes, authentication, management access or firmware.",
+        "Obtain the current signed vendor bulletin and deployment instructions; this handoff snapshot may be stale."
+      ],
+      "steps": [
+        "Operator review ONLY; do not execute a patch from this toolkit. Handoff remediation: Qt 6.8.9 LTS, 6.11.3 or 6.12.0+, or paired vendor-designated branch patches; rebuild/relink as needed.",
+        "Propose the smallest vendor-supported exposure reduction and check change-management authorization and impact; do not assume a candidate measure prevents exploitation.",
+        "Use the official vendor update process on the exact affected product, or escalate if no supported fix can be verified."
+      ],
+      "check": [
+        "Independently confirm the actual running signed release or firmware, exact vendor advisory/patch ID, configuration, permissions and service-health invariants.",
+        "Check the original exposure path without sending exploit payloads; preserve evidence of any earlier compromise.",
+        "Do not label the issue fixed from host OS version, a package download, simulation output, or a successful checklist alone."
+      ],
+      "undo": [
+        "Use only a vendor-supported rollback/recovery process approved by the system owner; a rollback may reintroduce exposure.",
+        "Remove temporary restrictions only after validating the corrected active deployment and independently verifying protected business services."
+      ],
+      "limitations": "Handoff evidence does not establish operational effectiveness. Open issue: Trusted-peer filtering is documented but requires complete path coverage. Embedded/static/OEM integration is not proven by a library release; crash alone is not H4. No automated patch, firewall rule, firmware flash, privilege change, or trusted-state attestation is supplied.",
+      "references": [
+        "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/103xxx/CVE-2026-103653.json",
+        "https://www.qt.io/blog/security-advisory-cve-2026-103653",
+        "https://wiki.qt.io/List_of_known_vulnerabilities_in_Qt_products#CVE-2026-103653:"
       ]
     }
   ]

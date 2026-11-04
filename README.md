@@ -1,5 +1,17 @@
 # Vulnerpocalypse Containment — cross-platform security-update evidence toolkit
 
+## November 3, 2026 — RIR research handoff (review-only)
+
+The [RIR handoff guide](docs/2026-11-03-RIR-HANDOFF.md) preserves 64
+source-reported records and adds 30 detailed CVE records and 30 review-only
+containment profiles to the tracked catalog. It does not patch live software,
+install firmware, or authorize network changes.
+
+Run `python3 scripts/research_handoff.py validate` to check the evidence ledger,
+or `python3 scripts/research_handoff.py plan CVE-2026-103653 --os service`
+to produce a proposed (non-executable) recovery plan.
+
+
 [![Offline tests](https://img.shields.io/badge/tests-offline%20only-blue)](#verification-and-testing)
 
 **Maintained catalog, not a universal zero-day patcher.** This project tracks
