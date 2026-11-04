@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "reviewed_as_of": "2026-10-30",
+  "reviewed_as_of": "2026-11-03",
   "scope": "Curated Anthropic-linked records and separately sourced October 29-30, 2026 vendor advisories; not exhaustive. Read-only assessments never install patches.",
   "official_research": "https://www.anthropic.com/research/discovering-vulnerabilities-with-claude",
   "advisories": [
@@ -393,6 +393,876 @@
       "patch_url": null,
       "verification": "Verify active Veeam Management Pack Collector build 13.1.0.334 after approved upgrade from supported source (9a build 9.1.0.3107); validate Collector service and SCOM operations.",
       "limitations": "Only Veeam Management Pack; does not certify other Veeam products. Upgrade from older 9.x may need staging to supported starting build."
+    },
+    {
+      "id": "handoff-cve-2026-97229",
+      "product": "GitLab CE/EE",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-13",
+      "cves": [
+        "CVE-2026-97229"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/97xxx/CVE-2026-97229.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Branch fixes 19.2.8, 19.3.5 or 19.4.2, or supported successors containing the fix. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Patch release October 12; CVE October 13; KEV addition October 29. Reconcile runtime, queued work, build outputs and potentially exposed credentials. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-76418",
+      "product": "Cisco ASA / FTD",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-10-28",
+      "cves": [
+        "CVE-2026-76418"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/76xxx/CVE-2026-76418.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Use Cisco’s branch-specific corrected release. Published configuration mitigation requires preservation of protected authentication factors. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Check default tunnel-group scope. Removing secondary authentication can weaken security and is not cleared for deployment. Reload alone does not establish H4. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-118527",
+      "product": "Ivanti Connect Secure",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-11-03",
+      "cves": [
+        "CVE-2026-118527"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/118xxx/CVE-2026-118527.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: CNA lists branch correction points 25.1.1.3 and 22.8R2.6; validate the complete supported chain correction. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. CVE publication November 3 is later than the already known October exploitation/KEV context. Do not label this CVE alone unauthenticated root execution. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120306",
+      "product": "Beam Beta9 build workers",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-01",
+      "cves": [
+        "CVE-2026-120306"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120306.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Corrected worker 0.1.756; verify the actual deployed image and supported successor. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. September fix was formalized by a November CVE. Exact worker privileges and tenant/build separation require deployment-specific validation. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120307",
+      "product": "Beam Beta9 sandbox file API",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-01",
+      "cves": [
+        "CVE-2026-120307"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120307.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Corrected worker 0.1.756; authenticate and activate the correct worker artifact. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Review every worker filesystem/credential boundary; gateway authentication alone is not host-path confinement. September correction is not a new November patch. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120308",
+      "product": "Beam Beta9 volumes",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-01",
+      "cves": [
+        "CVE-2026-120308"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120308.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Gateway 0.1.776 AND worker 0.1.756, with supported handling of previously persisted stubs. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Updating only one component is insufficient evidence. Validate ownership and confinement for persisted state before privileged reuse. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-119050",
+      "product": "Agno PandasTools",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-119050"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/119xxx/CVE-2026-119050.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: No merged supported fixed release verified. Server-side tool removal and independent runtime isolation are candidates pending validation. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Public issue #8699 and proposed PR #8713 date to July 2; PR was open when reviewed. Do not assume 3.1.12 fixed it or count an October discovery. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-119978",
+      "product": "Flowise custom functions",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-30",
+      "cves": [
+        "CVE-2026-119978"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/119xxx/CVE-2026-119978.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Exact supported fixed release Unknown. Candidate: suspend the affected capability and constrain execution externally while confirming a maintainer correction. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. CVE-2026-73483 is a distinct sibling. Its 3.1.3 fix does not establish a fix here; neither is 3.1.5 assumed corrected. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120311",
+      "product": "Network-AI FileJobStore",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120311"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120311.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Update to 5.15.5 on a supported dependency path. Independently protected policy storage is a candidate compensating boundary. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Do not promote file primitives to demonstrated RCE. Validate that worker/job authority cannot alter or invalidate authorization policy. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120312",
+      "product": "Network-AI AgentVCR",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120312"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120312.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Update to 5.15.5; test cassette and policy-store separation with dummy data. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Policy replacement/reload/missing-file behavior remains a validation question, not proof of a surviving flaw or observed compromise. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120313",
+      "product": "Network-AI InputSanitizer",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120313"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120313.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Update to 5.15.5 and verify every affected helper call site plus independent OS filesystem restrictions. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Input validation is not an independent host boundary. No unverified symlink/race or post-fix bypass claim is made. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120314",
+      "product": "Network-AI A2AServer",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120314"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120314.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: 5.15.5 requires a secret except explicit loopback development opt-out; validate matched client/server transport changes. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Check listeners, all task operations and direct bypass routes. Authentication does not independently fix the sibling path-confinement defects. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120315",
+      "product": "LobeHub Chat",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120315"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120315.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Maintainer maps correction to 2.1.49. Confirm actual parser image, queued inputs and immutable code/configuration boundaries. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Do not infer all earlier versions are safe from a narrow CNA lower bound. Access restriction alone does not dispose of already queued files. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120322",
+      "product": "Termix / File Manager",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120322"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120322.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: CNA maps correction to core 26.10.0 and standalone File Manager plugin 1.0.0; obtain mechanism-specific vendor confirmation. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Calendar-version transition and plugin/core distinctions matter. Do not recommend an unsupported downgrade to 2.8 or treat a public exploit as in-the-wild evidence. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-18199",
+      "product": "ManageEngine Password Manager Pro / PAM360",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-18199"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/18xxx/CVE-2026-18199.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Password Manager Pro 13236, fixed July 31; PAM360 8601, fixed July 30. Match exact product/build and upgrade sequence. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. November CVE publication is not a new July patch. Separately assess possible authority exposure and safe credential recovery. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-62374",
+      "product": "SD JWT JS core / decoder",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-62374"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/62xxx/CVE-2026-62374.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: @sd-jwt/core 0.20.0 is fixed. Standalone @sd-jwt/decode corrected release Unknown. Candidate: fail closed for operation-required claims. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Affected core/decode through 0.19.0. July 2 disclosure was later indexed; holder binding is not a universal fix and core version guidance must not be transferred to decode. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-114406",
+      "product": "eMudhra / Red Hat trust-store consumers",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-21",
+      "cves": [
+        "CVE-2026-114406"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/114xxx/CVE-2026-114406.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Use product/channel-specific vendor distrust updates and supported rebuilds; evaluate only vendor-supported blocklisting with exact certificate identity. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Root-versus-intermediate naming and fingerprints require reconciliation. No guessed blanket certificate removal; exact trust consumer and TLS compatibility matter. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120309",
+      "product": "Nuxt / @nuxt/nitro-server",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120309"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120309.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Nuxt 4.6.2; maintainer workaround is one canonical parameter source for authorization and lookup. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Inspect actual route patterns and enforce resource authorization independently; Nuxt 3 is outside the stated affected scope. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120310",
+      "product": "Parse Server",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-120310"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120310.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Branch corrections 8.6.109 or 9.10.6-alpha.1; choose a supported branch, not an unnecessary move to alpha. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Custom triggers/protected fields and transaction behavior affect validation. Use dummy objects to verify response confidentiality and legitimate updates. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120534",
+      "product": "ACF Extended PRO for WordPress",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-03",
+      "cves": [
+        "CVE-2026-120534"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120534.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Exact supported fixed release Unknown. Suspend affected capabilities only through supported, validated owner-specific configuration. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Underlying disclosure September 14; November 3 CVE indexing is not a new attack. Changelog 0.9.2.7/.8 does not establish this fix. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-89292",
+      "product": "Eclipse Mnestix Browser",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-03",
+      "cves": [
+        "CVE-2026-89292"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/89xxx/CVE-2026-89292.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: 2.3.0 is outside the CNA affected range; exact supported corrected artifact/upgrade route not independently obtained. Candidate: independent ingress/egress/key-scope restrictions. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Detailed Eclipse issues were inaccessible. Do not infer actual key theft or backend root authority; an upgrade does not withdraw an exposed key. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-42922",
+      "product": "FUXA / embedded Node-RED",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-10-29",
+      "cves": [
+        "CVE-2026-42922"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/42xxx/CVE-2026-42922.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Supported release containing the documented 1.3.3 correction; independently restrict the administration surface pending product-specific validation. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Closely overlaps July GHSA-5h5x-9h7x-23f4 / CVE-2026-67443. Alias status and role-specific limits remain unresolved; do not count two discoveries. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-116606",
+      "product": "Barracuda Email Security Gateway",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-116606"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/116xxx/CVE-2026-116606.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Use exact supported ESG firmware/security-patch route; vendor lists BNSF-40425 and BNSF-40430 for different branches. Restrict management access. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. CNA range before 9.4.0.030 and vendor patch branch notation require literal preservation/confirmation. A version label alone does not prove patch installation. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-111560",
+      "product": "Barracuda appliance product families",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-11-02",
+      "cves": [
+        "CVE-2026-111560"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/111xxx/CVE-2026-111560.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Use product-specific firmware/security-patch combination; vendor also recommends trusted-internal-network administrative access. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Map ESG, ADC, WAF, WSG, Message Archiver or Cloud Control separately. Later processing does not establish formerly authorized queued-command execution under H3. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-107441",
+      "product": "Zyxel GS1900 switches",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-11-03",
+      "cves": [
+        "CVE-2026-107441"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/107xxx/CVE-2026-107441.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Model-specific 2.90(... .3)C0 images correct corresponding affected through-.2 C0 builds; use exact vendor table. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. ABTP model naming differs between CNA and vendor. Confirm model/revision/image, management path, switching continuity and supported recovery. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-76955",
+      "product": "Zyxel APs / FWA7 / security routers",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-11-03",
+      "cves": [
+        "CVE-2026-76955"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/76xxx/CVE-2026-76955.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Use exact model-specific corrected image; WAC500H requires support hotfix, USG LITE 60AX uses cloud distribution. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. LAN/WLAN exposure is not covered by a WAN or web-only restriction. Cloud release does not prove actual device installation. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-120198",
+      "product": "WAVLINK WL-WN530BE1-A",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-11-01",
+      "cves": [
+        "CVE-2026-120198"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/120xxx/CVE-2026-120198.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: No supported corrected vendor image/workaround verified. Candidate: independently restrict management reachability or isolate an exposed device. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Support lifecycle and all WAN/LAN/WLAN paths require evidence. A public exploit report is not confirmed in-the-wild exploitation. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-111461",
+      "product": "Moxa OnCell G3150A-LTE",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-10-27",
+      "cves": [
+        "CVE-2026-111461"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/111xxx/CVE-2026-111461.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Vendor-CNA recommends disabling unnecessary SMS management. No supported update established; plan owner/vendor-supported isolation or replacement. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. An IP firewall does not mediate SMS delivery. Unsupported does not mean immutable silicon; carrier-side restrictions need independent effectiveness evidence. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-97631",
+      "product": "TianoCore EDK II NetworkPkg / PXE",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-10-22",
+      "cves": [
+        "CVE-2026-97631"
+      ],
+      "attribution": "November 3, 2026 handoff; manual applicability and vendor release check required",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/97xxx/CVE-2026-97631.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Upstream fix PR #13302 merged October 15; advisory October 22, later Mu backports. Obtain a supported model-specific OEM image. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Candidate: disable unused PXE or independently isolate provisioning, conditional on boot/recovery needs. Never equate a source merge with installed firmware or immutable hardware. Source scope: Detailed CVE record."
+    },
+    {
+      "id": "handoff-cve-2026-103653",
+      "product": "Qt CoAP",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-11-03",
+      "cves": [
+        "CVE-2026-103653"
+      ],
+      "attribution": "Qt advisory (independently checked November 3) and supplied handoff",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://raw.githubusercontent.com/CVEProject/cvelistV5/main/cves/2026/103xxx/CVE-2026-103653.json",
+      "patch_url": null,
+      "verification": "Read-only handoff. Source-reported remediation: Qt 6.8.9 LTS, 6.11.3 or 6.12.0+, or paired vendor-designated branch patches; rebuild/relink as needed. Confirm installed running component, edition, asset, signed vendor artifact, security outcome, permitted rollback and service health before marking fixed.",
+      "limitations": "Not a shipped patch or tested live mitigation; no OS-wide fix can be inferred. Trusted-peer filtering is documented but requires complete path coverage. Embedded/static/OEM integration is not proven by a library release; crash alone is not H4. Source scope: Detailed CVE record. Fixed release comparison applies only to Qt CoAP library on these supported trains; other Qt releases, linked app binaries, firmware, downstream/OEM builds and application deployment remain unverified. Other trains are unknown.",
+      "published_branch_floors": {
+        "6.8": "6.8.9",
+        "6.11": "6.11.3",
+        "6.12": "6.12.0"
+      }
+    },
+    {
+      "id": "cisco-sdwan-cve-2026-20127",
+      "product": "Cisco Catalyst SD-WAN Controller / Manager / Validator (vendor-managed network infrastructure)",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-02-25",
+      "cves": [
+        "CVE-2026-20127"
+      ],
+      "attribution": "Cisco PSIRT advisory; Cisco Talos reported UAT-11473 / KeyDrift post-exploitation activity",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "fixed_releases": {
+        "20.9": "20.9.8.2",
+        "20.12 through 20.12.5": "20.12.5.3",
+        "20.12.6": "20.12.6.1",
+        "20.15": "20.15.4.2",
+        "20.18": "20.18.2.1"
+      },
+      "official_advisory": "https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-rpa-EHchtZk",
+      "patch_url": null,
+      "verification": "Follow Cisco TAC compromise assessment, confirm each control component's exact Cisco-signed release and supported upgrade path. An upgrade alone cannot establish recovery after possible KeyDrift key theft.",
+      "limitations": "Network appliance/software problem, not a Windows/Linux/macOS host hotfix. Cisco does not identify a full workaround. Restricting SSH/NETCONF access is temporary mitigation; offline detection cannot establish compromise, clean keys, or business continuity."
+    },
+    {
+      "id": "ivanti-ics-cve-2026-104935",
+      "product": "Ivanti Connect Secure (ICS) appliance",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-10-13",
+      "cves": [
+        "CVE-2026-104935"
+      ],
+      "attribution": "Ivanti CNA CVE record; CISA KEV; Canadian Centre update October 30",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://hub.ivanti.com/s/article/Security-Advisory-Ivanti-Connect-Secure-CVE-2026-104935",
+      "patch_url": null,
+      "verification": "Verify actual ICS hardware/VM migration path and running build with Ivanti. For broader exploited chain, review 25.1.1.3, 25.1.3.1 and 22.8R2.6 with current Ivanti advisories; preserve and inspect compromise evidence after updating.",
+      "limitations": "CVE-2026-104935 was fixed in some earlier builds; newer recommended targets cover additional exploited chain vulnerabilities. Numeric version ordering is unreliable for R-suffixed builds or across hardware generations; no automatic safe/fixed verdict.",
+      "fixed_releases": {
+        "25.1.1 line (chain-aware target)": "25.1.1.3",
+        "25.1.2/25.1.3 line (chain-aware target)": "25.1.3.1",
+        "22.8R2 line (chain-aware target)": "22.8R2.6"
+      }
+    },
+    {
+      "id": "f5-bigip-apm-cve-2026-94127",
+      "product": "F5 BIG-IP APM (OAuth Authorization Server)",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-09-22",
+      "cves": [
+        "CVE-2026-94127"
+      ],
+      "attribution": "F5 K000162605; Canadian Centre AL26-022; CVE CNA record",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://my.f5.com/manage/s/article/K000162605",
+      "patch_url": null,
+      "verification": "Determine whether the same virtual server has an APM access policy and OAuth Authorization Server profile. Apply the precise F5-signed engineering hotfix with F5 Support; verify installed engineering hotfix identity, application access and operational failover.",
+      "limitations": "APM OAuth Client/Resource Server-only deployments are not affected by the described configuration. Engineering hotfix names are not ordinary comparable numeric versions. No toolkit iRule is supplied; use only F5-provided iRules under change control.",
+      "fixed_releases": {
+        "17.1": "Hotfix-BIGIP-17.1.3.5.0.41.14-ENG",
+        "17.5": "Hotfix-BIGIP-17.5.1.9.0.160.12-ENG",
+        "21.1": "Hotfix-BIGIP-21.1.0.2.0.30.22-ENG"
+      }
+    },
+    {
+      "id": "arista-vco-cve-2026-93952",
+      "product": "Arista VeloCloud Orchestrator (VCO) On-Prem",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-09-22",
+      "cves": [
+        "CVE-2026-93952"
+      ],
+      "attribution": "Arista Security Advisory 0183; active exploitation noted by vendor",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://www.arista.com/en/support/advisories-notices/security-advisory/24765-security-advisory-0183",
+      "patch_url": null,
+      "verification": "Verify exact on-prem VCO train, apply Arista-published fixed build when available and vendor-approved upgrade path; preserve logs and validate Edge orchestration, certificates and admin access. Hosted/Dedicated versions were patched by provider.",
+      "limitations": "Version floors documented only for 5.2.3 and 6.4.2 trains. Vulnerable 6.1 and 7.0 trains require vendor confirmation; being on an unlisted train never means fixed. Restrictions can interrupt Edge management.",
+      "fixed_releases": {
+        "5.2.3": "5.2.3.16",
+        "6.4.2": "6.4.2.8"
+      },
+      "published_branch_floors": {
+        "5.2.3": "5.2.3.16",
+        "6.4.2": "6.4.2.8"
+      }
+    },
+    {
+      "id": "cisco-sdwan-manager-cve-2026-76504",
+      "product": "Cisco Catalyst SD-WAN Manager (vManage)",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-09-30",
+      "cves": [
+        "CVE-2026-76504"
+      ],
+      "attribution": "Cisco PSIRT cisco-sa-sdwan-webauth-xr8beuuU; Cisco remediation workflow",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://www.cisco.com/c/en/us/support/docs/csa/cisco-sa-sdwan-webauth-xr8beuuU.html",
+      "patch_url": null,
+      "verification": "Collect Admin-Tech bundles from all managers before upgrade, use Cisco TAC for post-upgrade IOC review, install Cisco-signed first fixed release for the exact train, validate manager cluster, control links and enterprise flows.",
+      "limitations": "Cisco Live Protect shield is temporary partial coverage and may prevent legitimate URI-encoded login; no complete workaround. Unknown trains, older releases and cloud-managed branch require vendor confirmation; upgrade alone does not prove absence of compromise.",
+      "fixed_releases": {
+        "20.9": "20.9.10.1",
+        "20.12": "20.12.8.2",
+        "20.15": "20.15.6.1",
+        "20.18": "20.18.4.1",
+        "26.1": "26.1.2.1",
+        "26.2": "26.2.1"
+      },
+      "published_branch_floors": {
+        "20.9": "20.9.10.1",
+        "20.12": "20.12.8.2",
+        "20.15": "20.15.6.1",
+        "20.18": "20.18.4.1",
+        "26.1": "26.1.2.1",
+        "26.2": "26.2.1"
+      }
+    },
+    {
+      "id": "beyondtrust-rs-cve-2026-102764",
+      "product": "BeyondTrust Remote Support appliance / SaaS",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-15",
+      "cves": [
+        "CVE-2026-102764"
+      ],
+      "attribution": "BeyondTrust security advisory BT26-05",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://www.beyondtrust.com/trust-center/security-advisories/bt26-05",
+      "patch_url": null,
+      "verification": "SaaS: vendor states patched as of Oct 9. Self-hosted: verify BT26-05-RS patch applied in appliance UI, whether automatic updates are enabled, and upgrade to supported v24.3.1 or later before applying patch if below that version. Validate active patch record and authorized support sessions.",
+      "limitations": "All Remote Support versions through 26.2.3 are affected without vendor patch; the base version alone cannot establish patch status. No automatic status from numeric version; do not confuse Remote Support with other BeyondTrust products.",
+      "fixed_releases": {
+        "self-hosted supported patch range": "BT26-05-RS patch for 24.3.1–26.2.3"
+      }
+    },
+    {
+      "id": "collabora-code-cve-2026-110447",
+      "product": "Collabora Online built-in CODE Server (Nextcloud richdocumentscode app)",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-14",
+      "cves": [
+        "CVE-2026-110447"
+      ],
+      "attribution": "Collabora CNA CVE record; CollaboraOnline/richdocumentscode issue 354",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://github.com/CollaboraOnline/richdocumentscode/issues/354",
+      "patch_url": null,
+      "verification": "Verify Nextcloud richdocumentscode active app version 26.4.303 or later, app source and integrity; audit proxy.php access and suspicious created PHP files; validate document editing after maintenance.",
+      "limitations": "Only the Nextcloud built-in CODE Server app is within this CVE scope, not standalone Collabora Online. RCE may occur when built-in CODE server is not running. A version floor is not compromise clearance.",
+      "fixed_releases": {
+        "Nextcloud richdocumentscode": "26.4.303"
+      },
+      "published_branch_floors": {
+        "26.4": "26.4.303"
+      }
+    },
+    {
+      "id": "freertos-kernel-cve-2026-119086",
+      "product": "FreeRTOS-Kernel queue sets on MPU-enabled embedded firmware",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-10-30",
+      "cves": [
+        "CVE-2026-119086"
+      ],
+      "attribution": "AWS Security Bulletin 2026-158-AWS / FreeRTOS upstream advisory",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://aws.amazon.com/security/security-bulletins/2026-158-aws/",
+      "patch_url": null,
+      "verification": "Determine build provenance, MPU port and configUSE_QUEUE_SETS setting; verify FreeRTOS-Kernel V11.3.3 or vendor-backported fix in actual built firmware, signed image, flashed device and post-reboot functioning. Review downstream forks.",
+      "limitations": "Only MPU-enabled ports using configUSE_QUEUE_SETS=1 are implicated. Version-only checks cannot establish device build flags, forks or deployed firmware. A FreeRTOS source update is not an installed device firmware patch.",
+      "fixed_releases": {
+        "FreeRTOS-Kernel": "V11.3.3"
+      },
+      "published_branch_floors": {
+        "11.3": "11.3.3"
+      }
+    },
+    {
+      "id": "aws-nitro-enclaves-c-sdk-2026-119116-119148",
+      "product": "AWS Nitro Enclaves SDK for C and kmstool-enclave example",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-30",
+      "cves": [
+        "CVE-2026-119116",
+        "CVE-2026-119148"
+      ],
+      "attribution": "AWS Security Bulletin 2026-157-AWS",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://aws.amazon.com/security/security-bulletins/2026-157-aws/",
+      "patch_url": null,
+      "verification": "Inventory SDK library version and kmstool-enclave use; upgrade aws-nitro-enclaves-sdk-c to v0.4.6 or later, rebuild enclave images from reviewed source, update signed artifacts and attest/deploy images; test authorized KMS calls after replacement.",
+      "limitations": "CVE-2026-119116 applies to kmstool-enclave/derived images; CVE-2026-119148 applies to the SDK library. Parent EC2 OS updates alone do not replace enclave images. AWS states no workaround.",
+      "fixed_releases": {
+        "aws-nitro-enclaves-sdk-c": "v0.4.6"
+      },
+      "published_branch_floors": {
+        "0.4": "0.4.6"
+      }
+    },
+    {
+      "id": "aws-kinesis-producer-java-2026-119117",
+      "product": "Amazon Kinesis Producer Library for Java",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-30",
+      "cves": [
+        "CVE-2026-119117"
+      ],
+      "attribution": "AWS Security Bulletin 2026-159-AWS",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://aws.amazon.com/security/security-bulletins/2026-159-aws/",
+      "patch_url": null,
+      "verification": "Identify Maven group ID and resolved KPL runtime dependency, migrate 0.x to software.amazon.kinesis:amazon-kinesis-producer >=1.0.8, rebuild and deploy, verify live child-process arguments and log pipeline do not expose credentials; rotate/revoke credentials and protect historical logs.",
+      "limitations": "Setting the KPL daemon logger to INFO reduces log leakage only; affected native child-process arguments may still reveal credentials. 0.x versions require migration, not a branch-local numeric floor. Credentials already exposed require separate remediation.",
+      "fixed_releases": {
+        "software.amazon.kinesis:amazon-kinesis-producer": "1.0.8"
+      },
+      "published_branch_floors": {
+        "1.0": "1.0.8"
+      }
+    },
+    {
+      "id": "delinea-secret-server-oct2026",
+      "product": "Delinea Secret Server on-premises and cloud (JWT, login, FIDO2)",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-30",
+      "cves": [
+        "CVE-2026-115830",
+        "CVE-2026-115829",
+        "CVE-2026-115828"
+      ],
+      "attribution": "Delinea Security Advisories October 30, 2026",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://delinea.com/security-advisories",
+      "patch_url": null,
+      "verification": "Confirm exact Secret Server product version and cloud tenant patch state; deploy Delinea-supported 12.3.1 update, verify running release and re-test intended JWT issuance, normal login, FIDO2 PIN/biometric enforcement and administrative audit records.",
+      "limitations": "Delinea lists affected on-prem and cloud versions 12.2.7 or earlier. A 12.3.1 version check is a reported software-floor comparison only, not confirmation that a cloud tenant is patched or an already compromised environment has recovered.",
+      "fixed_releases": {
+        "Secret Server": "12.3.1"
+      },
+      "published_branch_floors": {
+        "12.3": "12.3.1"
+      }
+    },
+    {
+      "id": "ivanti-ics-cve-2026-111357",
+      "product": "Ivanti Connect Secure (DSCache privilege escalation)",
+      "platforms": [
+        "network"
+      ],
+      "date_published": "2026-10-15",
+      "cves": [
+        "CVE-2026-111357"
+      ],
+      "attribution": "Ivanti Connect Secure advisory; CISA KEV October 30, 2026; Canadian Cyber Centre AV26-1035 update",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://hub.ivanti.com/s/article/Security-Advisory-Ivanti-Connect-Secure-CVE-2026-104935",
+      "patch_url": null,
+      "verification": "Verify exact appliance/hardware release train against Ivanti advisory, with targets including 22.8R2.6 and 25.1.1.3 where applicable. Acquire signed vendor upgrade and preserve off-device incident evidence; run vendor Integrity Checker and perform compromise-specific recovery if indicated.",
+      "limitations": "Exploited in the wild; this LPE can be used with an authentication-bypass chain. Numeric comparisons of 22.8R2.x and 25.1.x are not interchangeable. Earlier remediation for CVE-2026-104935 alone may not resolve the full chain. No confirmed complete standalone workaround.",
+      "fixed_releases": {
+        "22.8R2 train": "22.8R2.6",
+        "25.1.1 train": "25.1.1.3"
+      }
+    },
+    {
+      "id": "google-brotli-cve-2026-111497",
+      "product": "Google Brotli decoder (also bundled in Node.js, .NET and industrial software)",
+      "platforms": [
+        "service"
+      ],
+      "date_published": "2026-10-21",
+      "cves": [
+        "CVE-2026-111497"
+      ],
+      "attribution": "Google Brotli GHSA-9v8h-qqgm-4m35; Siemens SSA-045512; Node.js October security releases",
+      "fix_type": "vendor_update",
+      "minimum_versions": {},
+      "official_advisory": "https://github.com/advisories/GHSA-9v8h-qqgm-4m35",
+      "patch_url": null,
+      "verification": "Identify exact Brotli decoder dependency and package provenance across container, native binary and application layers. Use fixed upstream 1.0.10, 1.1.1 or 1.2.1 in the corresponding train, or the vendor-supported runtime/Siemens release. Rebuild redeploy and restart; test legitimate decompression.",
+      "limitations": "Brotli decoder version cannot be inferred from the operating system, Node.js/npm wrapper, a Python package name or a Siemens product version. Distinguish encoder-only vs attacker-controlled decoding. Vendor backports and embedded static libraries require independent proof; raw library floor is not a Siemens firmware fix.",
+      "fixed_releases": {
+        "Brotli 1.0": "1.0.10",
+        "Brotli 1.1": "1.1.1",
+        "Brotli 1.2": "1.2.1"
+      },
+      "published_branch_floors": {
+        "1.0": "1.0.10",
+        "1.1": "1.1.1",
+        "1.2": "1.2.1"
+      }
     }
   ],
   "unresolved": [

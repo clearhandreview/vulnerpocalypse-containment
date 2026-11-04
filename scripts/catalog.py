@@ -30,6 +30,7 @@ ROOT = Path(__file__).resolve().parents[1]
 DEFAULT_CATALOG = ROOT / "data" / "advisories.json"
 CVE_RE = re.compile(r"^CVE-\d{4}-\d{4,}$")
 VERSION_RE = re.compile(r"^\d+(?:\.\d+){3}$")
+BRANCH_VERSION_RE = re.compile(r"^\d+(?:\.\d+){2,3}$")
 
 
 def version_tuple(raw: str) -> tuple[int, ...]:
@@ -116,6 +117,19 @@ def validate_catalog(data: object, directory: Path) -> None:
                        or not isinstance(release, str) or not release.strip()
                        for branch, release in fixed_releases.items())):
             raise ValueError(f"{key}: invalid fixed_releases branch map")
+        branch_floors = item.get("published_branch_floors")
+        if branch_floors is not None:
+            if (not isinstance(branch_floors, dict) or not branch_floors
+                    or item.get("fix_type") != "vendor_update"
+                    or item.get("platforms") not in (["network"], ["service"])):
+                raise ValueError(f"{key}: invalid product branch floors")
+            for train, floor in branch_floors.items():
+                if (not isinstance(train, str) or not isinstance(floor, str)
+                        or not re.fullmatch(r"\d+(?:\.\d+){1,2}", train)
+                        or not BRANCH_VERSION_RE.fullmatch(floor)
+                        or not floor.startswith(train + ".")):
+                    raise ValueError(f"{key}: invalid product branch floor {train!r}")
+
         if item.get("local_patch") is not None:
             if not isinstance(item["local_patch"], str) or not item["local_patch"].strip():
                 raise ValueError(f"{key}: local patch path must be a nonempty string")
@@ -195,6 +209,37 @@ def assess(item: dict, system: str, version: str, variant: str = "") -> dict:
             out["result"] = "below_published_release_floor"
             out["reason"] = "This reported product version is below the published fixed build."
         return out
+    if system in {"network", "service"} and "published_branch_floors" in item:
+        if len(version) > 80 or not BRANCH_VERSION_RE.fullmatch(version):
+            out["reason"] = "Expected an installed dotted numeric network product release."
+            return out
+        matches = [
+            (train, floor) for train, floor in item["published_branch_floors"].items()
+            if version.startswith(train + ".")
+        ]
+        if not matches:
+            out["reason"] = (
+                "No comparable vendor-fixed floor established for this release train. "
+                "Contact the vendor; do not assume an unlisted release is safe."
+            )
+            return out
+        train, floor = max(matches, key=lambda entry: len(entry[0]))
+        installed = tuple(int(part) for part in version.split("."))
+        target = tuple(int(part) for part in floor.split("."))
+        out["minimum_published_fixed_version"] = floor
+        out["release_train"] = train
+        if installed >= target:
+            out["result"] = "meets_published_release_floor"
+            out["reason"] = (
+                "Reported product release meets the vendor's published fixed floor "
+                "for this exact train only. Confirm running vendor-signed build, "
+                "deployment and incident-response requirements."
+            )
+        else:
+            out["result"] = "below_published_release_floor"
+            out["reason"] = "Reported release is below this train's published vendor fix."
+        return out
+
     if item["id"] == "windows-cve-2026-33096":
         try:
             observed = version_tuple(version)

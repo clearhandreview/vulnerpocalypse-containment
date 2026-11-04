@@ -1,3 +1,10 @@
+# November 3, 2026 — RIR handoff integration
+
+This branch incorporates the November 3 research handoff. The exact test
+count and cross-platform results must be verified on this merged branch;
+previous snapshot results are historical, not proof of this merge.
+The new planning command is read-only and does not install vendor fixes.
+
 # Current offline verification — October 30, 2026
 
 **Local result:** 86 offline unit tests passed on the available Linux
